@@ -1,0 +1,20 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Subtotal</th>
+        <th>Forma de Pago</th>
+        <th>Notas</th>
+        <th>Id Servicio</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let detalleServicio of detalleServicios">
+        <td>{{detalleServicio.idDetalle}}</td>
+        <td>{{detalleServicio.subtotal}}</td>
+        <td>{{detalleServicio.formaDePago}}</td>
+        <td>{{detalleServicio.notas}}</td>
+        <td>{{detalleServicio.idServicio}}</td>
+      </tr>
+    </tbody>
+  </table>

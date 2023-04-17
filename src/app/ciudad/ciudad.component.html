@@ -1,0 +1,19 @@
+<h1>Listado de Ciudades</h1>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>ID Provincia</th>
+      <th>ID País</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let ciudad of ciudades">
+      <td>{{ciudad.idCiudad}}</td>
+      <td>{{ciudad.nombre}}</td>
+      <td>{{ciudad.idProvincia}}</td>
+      <td>{{ciudad.idPais}}</td>
+    </tr>
+  </tbody>
+</table>

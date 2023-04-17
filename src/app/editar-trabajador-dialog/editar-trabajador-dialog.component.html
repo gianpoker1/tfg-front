@@ -1,0 +1,36 @@
+<h2 mat-dialog-title>Editar Trabajador</h2>
+<mat-dialog-content>
+  <form>
+    <mat-form-field>
+      <input matInput placeholder="DNI" [(ngModel)]="trabajador.usuario.DNI" name="dni" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Tipo" [(ngModel)]="trabajador.tipo" name="tipo" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Usuario" [(ngModel)]="trabajador.usuario.nombre" name="user" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Usuario" [(ngModel)]="trabajador.usuario.apellido" name="user" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Teléfono" [(ngModel)]="trabajador.usuario.telefono" name="telefono" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="País" [(ngModel)]="trabajador.usuario.pais" name="idPais" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Ciudad" [(ngModel)]="trabajador.usuario.ciudad" name="idCiudad" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Provincia" [(ngModel)]="trabajador.usuario.provincia" name="idProvincia" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Email" [(ngModel)]="trabajador.usuario.userName" name="email" required>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cerrarDialog()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="guardarCambios()">Guardar cambios</button>
+</mat-dialog-actions>

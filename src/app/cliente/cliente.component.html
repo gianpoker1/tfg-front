@@ -1,0 +1,42 @@
+<h1>Listado de Clientes</h1>
+<mat-table [dataSource]="clientes">
+  <ng-container matColumnDef="idCliente">
+    <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+    <mat-cell *matCellDef="let cliente">{{ cliente.idCliente }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="nif">
+    <mat-header-cell *matHeaderCellDef>NIF</mat-header-cell>
+    <mat-cell *matCellDef="let cliente">{{ cliente.NIF }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="nombre">
+    <mat-header-cell *matHeaderCellDef>Nombre</mat-header-cell>
+    <mat-cell *matCellDef="let cliente">{{ cliente.Nombre }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="direccion">
+    <mat-header-cell *matHeaderCellDef>Dirección</mat-header-cell>
+    <mat-cell *matCellDef="let cliente">{{ cliente.Direccion }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="telefono">
+    <mat-header-cell *matHeaderCellDef>Teléfono</mat-header-cell>
+    <mat-cell *matCellDef="let cliente">{{ cliente.Telefono }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="email">
+    <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+    <mat-cell *matCellDef="let cliente">{{ cliente.email }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="acciones">
+    <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+    <mat-cell *matCellDef="let cliente">
+      <button mat-icon-button (click)="editarCliente(cliente.idCliente)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button (click)="eliminarCliente(cliente.idCliente)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="['idCliente', 'nif', 'nombre', 'direccion', 'telefono', 'email', 'acciones']"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: ['idCliente', 'nif', 'nombre', 'direccion', 'telefono', 'email', 'acciones'];"></mat-row>
+</mat-table>
+

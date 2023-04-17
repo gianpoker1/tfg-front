@@ -1,0 +1,50 @@
+<h1>Listado de Proveedores</h1>
+<mat-table [dataSource]="proveedores">
+  <ng-container matColumnDef="nif">
+    <mat-header-cell *matHeaderCellDef>NIF</mat-header-cell>
+    <mat-cell *matCellDef="let proveedor">{{ proveedor.nif }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="nombre">
+    <mat-header-cell *matHeaderCellDef>Nombre</mat-header-cell>
+    <mat-cell *matCellDef="let proveedor">{{ proveedor.nombre }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="direccion">
+    <mat-header-cell *matHeaderCellDef>Dirección</mat-header-cell>
+    <mat-cell *matCellDef="let proveedor">{{ proveedor.direccion }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="telefono">
+    <mat-header-cell *matHeaderCellDef>Teléfono</mat-header-cell>
+    <mat-cell *matCellDef="let proveedor">{{ proveedor.telefono }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="idPais">
+    <mat-header-cell *matHeaderCellDef>País</mat-header-cell>
+    <mat-cell *matCellDef="let proveedor">{{ proveedor.idPais }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="idCiudad">
+    <mat-header-cell *matHeaderCellDef>Ciudad</mat-header-cell>
+    <mat-cell *matCellDef="let proveedor">{{ proveedor.idCiudad }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="idProvincia">
+    <mat-header-cell *matHeaderCellDef>Provincia</mat-header-cell>
+    <mat-cell *matCellDef="let proveedor">{{ proveedor.idProvincia }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="email">
+    <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+    <mat-cell *matCellDef="let proveedor">{{ proveedor.email }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="acciones">
+    <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+    <mat-cell *matCellDef="let proveedor">
+      <button mat-icon-button color="primary" (click)="editarProveedor(proveedor.idProveedor)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="eliminarProveedor(proveedor.idProveedor)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="['nif', 'nombre', 'direccion', 'telefono', 'idPais', 'idCiudad', 'idProvincia', 'email', 'acciones']"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: ['nif', 'nombre', 'direccion', 'telefono', 'idPais', 'idCiudad', 'idProvincia', 'email', 'acciones'];"></mat-row>
+</mat-table>
+

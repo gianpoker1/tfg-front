@@ -1,0 +1,17 @@
+<h1>Listado de Provincias</h1>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>ID País</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let provincia of provincias">
+      <td>{{provincia.idProvincia}}</td>
+      <td>{{provincia.nombre}}</td>
+      <td>{{provincia.idPais}}</td>
+    </tr>
+  </tbody>
+</table>

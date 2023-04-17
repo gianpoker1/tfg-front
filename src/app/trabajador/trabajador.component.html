@@ -1,0 +1,38 @@
+<h1>Listado de Trabajadores</h1>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>DNI</th>
+      <th>Tipo</th>
+      <th>Usuario</th>
+      <th>Teléfono</th>
+      <th>País</th>
+      <th>Ciudad</th>
+      <th>Provincia</th>
+      <th>Email</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let trabajador of trabajadores">
+      <td>{{trabajador.idTrabajador}}</td>
+      <td>{{trabajador.usuario.DNI}}</td>
+      <td>{{trabajador.tipo}}</td>
+      <td>{{trabajador.usuario.nombre}}</td>
+      <td>{{trabajador.usuario.telefono}}</td>
+      <td>{{trabajador.usuario.pais}}</td>
+      <td>{{trabajador.usuario.ciudad}}</td>
+      <td>{{trabajador.usuario.provincia}}</td>
+      <td>{{trabajador.usuario.userName}}</td>
+      <td>
+        <button mat-icon-button (click)="editarTrabajador(trabajador.idTrabajador)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="eliminarTrabajador(trabajador.idTrabajador)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

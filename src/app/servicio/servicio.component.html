@@ -1,0 +1,52 @@
+<h1>Listado de Servicios</h1>
+<table mat-table [dataSource]="servicios">
+  <ng-container matColumnDef="idServicio">
+    <th mat-header-cell *matHeaderCellDef>ID</th>
+    <td mat-cell *matCellDef="let servicio">{{ servicio.idServicio }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="idCliente">
+    <th mat-header-cell *matHeaderCellDef>ID Cliente</th>
+    <td mat-cell *matCellDef="let servicio">{{ servicio.idCliente }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="fechaInicio">
+    <th mat-header-cell *matHeaderCellDef>Fecha de Inicio</th>
+    <td mat-cell *matCellDef="let servicio">{{ servicio.fechaInicio }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="fechaEntrega">
+    <th mat-header-cell *matHeaderCellDef>Fecha de Entrega</th>
+    <td mat-cell *matCellDef="let servicio">{{ servicio.fechaEntrega }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="entregado">
+    <th mat-header-cell *matHeaderCellDef>Entregado</th>
+    <td mat-cell *matCellDef="let servicio">{{ servicio.entregado }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="idDetalleServicio">
+    <th mat-header-cell *matHeaderCellDef>ID Detalle de Servicio</th>
+    <td mat-cell *matCellDef="let servicio">{{ servicio.idDetalleServicio }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="idTrabajador">
+    <th mat-header-cell *matHeaderCellDef>ID Trabajador</th>
+    <td mat-cell *matCellDef="let servicio">{{ servicio.idTrabajador }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="acciones">
+    <th mat-header-cell *matHeaderCellDef>Acciones</th>
+    <td mat-cell *matCellDef="let servicio">
+      <button mat-icon-button color="primary" (click)="editarServicioDialog(servicio.idServicio)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="eliminarServicioDialog(servicio.idServicio)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+  <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+</table>

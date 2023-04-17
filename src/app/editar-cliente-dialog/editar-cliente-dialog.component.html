@@ -1,0 +1,30 @@
+<h1 mat-dialog-title>Editar Cliente</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <input matInput [(ngModel)]="cliente.usuario.DNI" placeholder="NIF">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [(ngModel)]="cliente.usuario.nombre" placeholder="Nombre">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [(ngModel)]="cliente.usuario.apellido" placeholder="Nombre">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [(ngModel)]="cliente.usuario.direccion" placeholder="Dirección">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [(ngModel)]="cliente.usuario.telefono" placeholder="Teléfono">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [(ngModel)]="cliente.usuario.userName" placeholder="Email">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="dialogRef.close()">Cancelar</button>
+  <button mat-button color="primary" (click)="guardarCambios()">Guardar cambios</button>
+</div>
