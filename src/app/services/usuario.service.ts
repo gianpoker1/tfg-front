@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Usuario } from '../models/usuario.model';
@@ -20,8 +20,19 @@ export class UsuarioService {
     return this.http.get<Usuario>(`${this.baseUrl}/${id}`);
   }
 
-  save(usuario: Usuario): Observable<Usuario> {
-    return this.http.post<Usuario>(this.baseUrl, usuario);
+  findByUserName(userName: string): Observable<Usuario>{
+    return this.http.get<Usuario>(`${this.baseUrl}/userName/${userName}`);
+  }
+
+  save(usuario: Usuario, tipo: string): Observable<Usuario> {
+    const options = {
+      headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+      }),
+      params: new HttpParams().set('tipo', tipo)
+    };
+    const payload = {...usuario, tipo};
+    return this.http.post<Usuario>(this.baseUrl, payload);
   }
 
   update(id: number, usuario: Usuario): Observable<Usuario> {

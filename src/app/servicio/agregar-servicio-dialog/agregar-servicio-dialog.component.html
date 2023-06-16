@@ -1,0 +1,66 @@
+<h2 mat-dialog-title>Agregar Servicio</h2>
+<mat-dialog-content>
+  <form #agregarServicioForm="ngForm" (ngSubmit)="agregarServicioForm.valid && agregarServicio()">
+
+
+    <mat-form-field class="full-width">
+      <mat-label>Cliente</mat-label>
+      <mat-select id="idCliente" name="idCliente" [(ngModel)]="nuevoServicio.idCliente" required>
+        <mat-option *ngFor="let cliente of usuarios" [value]="cliente.id">{{ cliente.nombre }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <br>
+    <mat-form-field class="full-width">
+      <label for="fechaInicio">Fecha de Inicio</label>
+      <input matInput [matDatepicker]="picker" id="fechaInicio" name="fechaInicio" [(ngModel)]="nuevoServicio.fechaInicio" required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <br>
+    <br>
+    <mat-form-field class="full-width">
+      <label for="fechaEntrega">Fecha de Entrega</label>
+      <input matInput [matDatepicker]="picker2" id="fechaEntrega" name="fechaEntrega" [(ngModel)]="nuevoServicio.fechaEntrega" required>
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+
+    <br>
+    <br>
+    <mat-checkbox matCheckbox [(ngModel)]="nuevoServicio.entregado" name="entregado">Entregado</mat-checkbox>
+    <br>
+    <br>
+
+    <mat-form-field class="full-width">
+      <label for="subtotal">Subtotal</label>
+      <input matInput type="number" id="subtotal" name="subtotal" [(ngModel)]="nuevoServicio.subtotal" required>
+    </mat-form-field>
+    <br>
+    <br>
+    <mat-form-field class="full-width">
+      <label for="formaDePago">Forma de Pago</label>
+      <input matInput id="formaDePago" name="formaDePago" [(ngModel)]="nuevoServicio.formaDePago" required>
+    </mat-form-field>
+    <br>
+    <br>
+    <mat-form-field class="full-width">
+      <label for="nombre">Nombre del Servicio</label>
+      <input matInput id="nombre" name="nombre" [(ngModel)]="nuevoServicio.nombre" required>
+    </mat-form-field>
+    <br>
+    <br>
+    <mat-form-field class="full-width">
+      <label for="notas">Notas</label>
+      <textarea matInput id="notas" name="notas" [(ngModel)]="nuevoServicio.notas" required></textarea>
+    </mat-form-field>
+    <br>
+    <br>
+  </form>
+</mat-dialog-content>
+<br>
+    <br>
+<mat-dialog-actions class="full-width">
+  <button mat-raised-button color="primary" (click)="agregarServicio()" [disabled]="agregarServicioForm.invalid">Agregar</button>
+  <button mat-button mat-dialog-close>Cancelar</button>
+</mat-dialog-actions>

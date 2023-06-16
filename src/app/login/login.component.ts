@@ -9,15 +9,19 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  username!: string;
+  userName!: string;
   password!: string;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, 
+    private router: Router
+    ) { }
 
   onSubmit() {
-    this.authService.login(this.username, this.password).subscribe(result => {
+    this.authService.login(this.userName, this.password).subscribe(result => {
+      console.log('Resultado del inicio de sesión:', result);
       if (result) {
-        this.router.navigate(['/trabajadores']);
+        
+        this.router.navigate(['/servicios']);
       } else {
         alert('Nombre de usuario o contraseña incorrectos');
       }

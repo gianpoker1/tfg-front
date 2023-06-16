@@ -1,0 +1,36 @@
+<h2 mat-dialog-title>Agregar Producto</h2>
+<mat-dialog-content>
+  <form #agregarProductoForm="ngForm" (ngSubmit)="agregarProductoForm.valid && agregarProducto()">
+    <mat-form-field class="full-width">
+      <label for="nombre">Nombre</label>
+      <input matInput id="nombre" name="nombre" [(ngModel)]="nuevoProducto.nombre" required>
+    </mat-form-field>
+    <br><br>
+    <mat-form-field class="full-width">
+      <label for="descripcion">Descripción</label>
+      <input matInput id="descripcion" name="descripcion" [(ngModel)]="nuevoProducto.descripcion" required>
+    </mat-form-field>
+    <br><br>
+    <mat-form-field class="full-width">
+      <label for="precio">Precio</label>
+      <input matInput id="precio" name="precio" [(ngModel)]="nuevoProducto.precio" required>
+    </mat-form-field>
+    <br><br>
+    <mat-form-field class="full-width">
+      <label for="existencias">Existencias</label>
+      <input matInput id="existencias" name="existencias" [(ngModel)]="nuevoProducto.existencias" required>
+    </mat-form-field>
+    <br><br>
+    <mat-form-field class="full-width">
+      <mat-label>Categoría</mat-label>
+      <mat-select placeholder="Seleccionar categoría" name="categoria" [(ngModel)]="nuevoProducto.idCategoria" required>
+        <mat-option *ngFor="let categoria of categorias" [value]="categoria.idCategoria">{{ categoria.nombre }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br><br>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions class="dialog-actions">
+  <button mat-raised-button color="primary" [mat-dialog-close]="nuevoProducto" [disabled]="agregarProductoForm.invalid">Agregar</button>
+  <button mat-button [mat-dialog-close]="null">Cancelar</button>
+</mat-dialog-actions>

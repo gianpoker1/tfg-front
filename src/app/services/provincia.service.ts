@@ -31,4 +31,8 @@ export class ProvinciaService {
   eliminarProvincia(id: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
   }
+
+  obtenerProvinciaConNombrePais(idProvincia: number): Observable<{provincia: Provincia, nombrePais: string}>{
+    return this.http.get<{provincia: Provincia, nombrePais: string}>(`${this.baseUrl}/conNombrePais/${idProvincia}`);
+  }
 }

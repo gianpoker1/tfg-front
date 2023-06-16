@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>Agregar Pais</h2>
+<mat-dialog-content>
+    <form [formGroup]="nuevoPaisForm" (ngSubmit)="nuevoPaisForm.valid && agregarPais()">
+        <mat-form-field class="full-width">
+            <label for="nombre">Nombre</label>
+            <input matInput type="text" formControlName="nombre" required>
+            <mat-error *ngIf="nuevoPaisForm.controls['nombre'].invalid">El nombre es requerido.</mat-error>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions class="dialog-actions">
+    <button mat-raised-button color="primary" [disabled]="nuevoPaisForm.invalid" (click)="agregarPais()">Agregar</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="null">Cancelar</button>
+</mat-dialog-actions>

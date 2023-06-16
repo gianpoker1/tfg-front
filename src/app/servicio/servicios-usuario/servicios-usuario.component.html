@@ -1,0 +1,47 @@
+<h1>Listado de Servicios</h1>
+
+<table mat-table [dataSource]="servicios">
+
+    <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+        <td mat-cell *matCellDef="let servicio"> {{servicio.nombre}} </td>
+    </ng-container>
+    <br>
+    <ng-container matColumnDef="entregado">
+        <th mat-header-cell *matHeaderCellDef>Entregado</th>
+    <td mat-cell *matCellDef="let servicio">{{ obtenerEntregado(servicio.entregado) }}</td>
+    </ng-container>
+    <br>
+    <ng-container matColumnDef="fechaInicio">
+        <th mat-header-cell *matHeaderCellDef>Fecha de Inicio</th>
+        <td mat-cell *matCellDef="let servicio">{{ servicio.fechaInicio }}</td>
+    </ng-container>
+    <br>
+    <ng-container matColumnDef="fechaEntrega">
+        <th mat-header-cell *matHeaderCellDef>Fecha de Entrega</th>
+        <td mat-cell *matCellDef="let servicio">{{ servicio.fechaEntrega }}</td>
+    </ng-container>
+    <br>
+    <ng-container matColumnDef="formaDePago">
+        <th mat-header-cell *matHeaderCellDef>Forma de Pago</th>
+        <td mat-cell *matCellDef="let servicio">{{ servicio.formaDePago }}</td>
+    </ng-container>
+    <br>
+    <ng-container matColumnDef="trabajador">
+        <th mat-header-cell *matHeaderCellDef>Trabajador</th>
+        <td mat-cell *matCellDef="let servicio">{{ servicio.trabajador }}</td>
+    </ng-container>
+    <br>
+    <ng-container matColumnDef="notas">
+        <th mat-header-cell *matHeaderCellDef>Notas</th>
+        <td mat-cell *matCellDef="let servicio">{{ obtenerNombreTrabajador(servicio.idTrabajador) }}</td>
+    </ng-container>
+    <br>
+    <ng-container matColumnDef="subTotal">
+        <th mat-header-cell *matHeaderCellDef>SubTotal</th>
+        <td mat-cell *matCellDef="let servicio">{{ servicio.subTotal }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+</table>

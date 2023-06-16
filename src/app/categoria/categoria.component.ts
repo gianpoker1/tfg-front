@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Categoria } from '../models/categoria.model';
 import { CategoriaService } from '../services/categoria.service';
-import { EliminarCategoriaDialogComponent } from '../eliminar-categoria-dialog/eliminar-categoria-dialog.component';
+import { EliminarCategoriaDialogComponent } from './eliminar-categoria-dialog/eliminar-categoria-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { EditarCategoriaDialogComponent } from '../editar-categoria-dialog/editar-categoria-dialog.component';
+import { EditarCategoriaDialogComponent } from './editar-categoria-dialog/editar-categoria-dialog.component';
 
 @Component({
   selector: 'app-categoria',

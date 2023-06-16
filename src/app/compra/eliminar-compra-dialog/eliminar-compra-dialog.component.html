@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Eliminar Compra</h1>
+<div mat-dialog-content>
+    <p>¿Está seguro que desea eliminar la compra?</p>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="cancelar()">Cancelar</button>
+    <button mat-raised-button color="warn" (click)="eliminarCompra()" cdkFocusInitial>Eliminar</button>
+</div>

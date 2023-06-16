@@ -1,0 +1,70 @@
+<h2 mat-dialog-title>Editar Trabajador</h2>
+<mat-dialog-content>
+  <form [formGroup]="trabajadorForm">
+    <mat-form-field appearance="fill" class="full-width">
+      <input matInput formControlName="dni" placeholder="DNI" [value]="usuario.dni">
+      <mat-error *ngIf="trabajadorForm.controls['dni'].invalid">El campo DNI es requerido.</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill" class="full-width">
+      <input matInput formControlName="tipo" placeholder="Tipo" [value]="trabajador.tipo">
+      <mat-error *ngIf="trabajadorForm.controls['tipo'].invalid">El campo Tipo es requerido.</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="full-width">
+      <input matInput formControlName="username" placeholder="Email" [value]="usuario.userName">
+      <mat-error *ngIf="trabajadorForm.controls['username'].invalid">El campo Email es requerido.</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="full-width">
+      <input matInput formControlName="nombre" placeholder="Nombre" [value]="usuario.nombre">
+      <mat-error *ngIf="trabajadorForm.controls['nombre'].invalid">El campo Nombre es requerido.</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="full-width">
+      <input matInput formControlName="apellido" placeholder="Apellido" [value]="usuario.apellido">
+      <mat-error *ngIf="trabajadorForm.controls['apellido'].invalid">El campo Apellido es requerido.</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="full-width">
+      <input matInput formControlName="telefono" placeholder="Telefono" [value]="usuario.telefono">
+      <mat-error *ngIf="trabajadorForm.controls['telefono'].invalid">El campo Telefono es requerido.</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="full-width">
+      <input matInput formControlName="direccion" placeholder="Direccion" [value]="usuario.direccion">
+      <mat-error *ngIf="trabajadorForm.controls['direccion'].invalid">El campo Direccion es requerido.</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Pais</mat-label>
+      <mat-select placeholder="Seleccionar Pais" formControlName="pais" required>
+        <mat-option *ngFor="let pais of paises" [value]="pais.idPais">
+          {{pais.nombre}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Provincia</mat-label>
+      <mat-select placeholder="Seleccionar Provincia" formControlName="provincia" required>
+        <mat-option *ngFor="let provincia of provincias" [value]="provincia.idProvincia">
+          {{provincia.nombre}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Ciudad</mat-label>
+      <mat-select placeholder="Seleccionar Ciudad" formControlName="ciudad" required>
+        <mat-option *ngFor="let ciudad of ciudades" [value]="ciudad.idCiudad">
+          {{ciudad.nombre}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Roles</mat-label>
+      <mat-select placeholder="Seleccionar Roles" formControlName="roles" required multiple>
+        <mat-option *ngFor="let rol of roles" [value]="rol?.id">
+          {{rol.nombre}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions class="dialog-actions">
+  <button mat-raised-button color="primary" (click)="guardarCambios()">Guardar cambios</button>
+  <button mat-raised-button (click)="cerrarDialog()">Cancelar</button>
+</mat-dialog-actions>

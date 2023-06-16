@@ -1,0 +1,36 @@
+<mat-toolbar color="primary">
+  <ng-container *ngIf="!isLoggedIn; else loggedInMenu">
+    <button mat-button (click)="abrirModalRegistro()">Registrarse</button>
+    <button mat-button routerLink="/">Iniciar sesión</button>
+  </ng-container>
+
+
+
+
+  <ng-template #loggedInMenu>
+    <button mat-button (click)="authService.logout()">Cerrar sesión</button>
+    <!-- trabajador -->
+    <ng-container *ngIf="isTrabajador()">
+      <button mat-button routerLink="/trabajadores">Lista trabajadores</button>
+      <button mat-button routerLink="/cliente">Lista clientes</button>
+      <button mat-button routerLink="/servicios">Servicios</button>
+      <button mat-button routerLink="/compras">Compras</button>
+      <button mat-button routerLink="/producto">Lista productos</button>
+    </ng-container>
+    <!-- Admin -->
+    <ng-container *ngIf="isAdmin()">
+      <button mat-button routerLink="/trabajadores">Lista trabajadores</button>
+      <button mat-button routerLink="/cliente">Lista clientes</button>
+      <button mat-button routerLink="/servicios">Servicios</button>
+      <button mat-button routerLink="/compras">Compras</button>
+      <button mat-button routerLink="/producto">Lista productos</button>
+      <button mat-button routerLink="/pais">Lista Paises</button>
+    </ng-container>
+    <!-- Cliente -->
+    <ng-container *ngIf="isCliente()">
+      <button mat-button routerLink="/usuarioServicio">Mis Servicios</button>
+      <button mat-button routerLink="/producto">Lista productos</button>
+    </ng-container>
+  </ng-template>
+
+</mat-toolbar>

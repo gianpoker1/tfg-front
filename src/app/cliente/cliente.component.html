@@ -1,42 +1,58 @@
 <h1>Listado de Clientes</h1>
-<mat-table [dataSource]="clientes">
-  <ng-container matColumnDef="idCliente">
-    <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
-    <mat-cell *matCellDef="let cliente">{{ cliente.idCliente }}</mat-cell>
+<button mat-raised-button color="primary" (click)="agregarCliente()">Añadir Cliente</button>
+<br><br>
+<table mat-table [dataSource]="userCliente">
+  <!-- Columnas de la tabla -->
+  <ng-container matColumnDef="userName">
+    <th mat-header-cell *matHeaderCellDef>Username</th>
+    <td mat-cell *matCellDef="let userCliente">{{ userCliente.usuario.userName }}</td>
   </ng-container>
-  <ng-container matColumnDef="nif">
-    <mat-header-cell *matHeaderCellDef>NIF</mat-header-cell>
-    <mat-cell *matCellDef="let cliente">{{ cliente.NIF }}</mat-cell>
+  <ng-container matColumnDef="dni">
+    <th mat-header-cell *matHeaderCellDef>DNI</th>
+    <td mat-cell *matCellDef="let userCliente">{{ userCliente.usuario.dni }}</td>
   </ng-container>
   <ng-container matColumnDef="nombre">
-    <mat-header-cell *matHeaderCellDef>Nombre</mat-header-cell>
-    <mat-cell *matCellDef="let cliente">{{ cliente.Nombre }}</mat-cell>
+    <th mat-header-cell *matHeaderCellDef>Nombre</th>
+    <td mat-cell *matCellDef="let userCliente">{{ userCliente.usuario.nombre }}</td>
   </ng-container>
-  <ng-container matColumnDef="direccion">
-    <mat-header-cell *matHeaderCellDef>Dirección</mat-header-cell>
-    <mat-cell *matCellDef="let cliente">{{ cliente.Direccion }}</mat-cell>
+  <ng-container matColumnDef="apellido">
+    <th mat-header-cell *matHeaderCellDef>Apellido</th>
+    <td mat-cell *matCellDef="let userCliente">{{ userCliente.usuario.apellido }}</td>
   </ng-container>
   <ng-container matColumnDef="telefono">
-    <mat-header-cell *matHeaderCellDef>Teléfono</mat-header-cell>
-    <mat-cell *matCellDef="let cliente">{{ cliente.Telefono }}</mat-cell>
+    <th mat-header-cell *matHeaderCellDef>Teléfono</th>
+    <td mat-cell *matCellDef="let userCliente">{{ userCliente.usuario.telefono }}</td>
   </ng-container>
-  <ng-container matColumnDef="email">
-    <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
-    <mat-cell *matCellDef="let cliente">{{ cliente.email }}</mat-cell>
+  <ng-container matColumnDef="direccion">
+    <th mat-header-cell *matHeaderCellDef>Dirección</th>
+    <td mat-cell *matCellDef="let userCliente">{{ userCliente.usuario.direccion }}</td>
   </ng-container>
+  <ng-container matColumnDef="pais">
+    <th mat-header-cell *matHeaderCellDef>País</th>
+    <td mat-cell *matCellDef="let userCliente">{{ userCliente.pais.nombre }}</td>
+  </ng-container>
+  <ng-container matColumnDef="ciudad">
+    <th mat-header-cell *matHeaderCellDef>Ciudad</th>
+    <td mat-cell *matCellDef="let userCliente">{{ userCliente.ciudad.nombre }}</td>
+  </ng-container>
+  <ng-container matColumnDef="provincia">
+    <th mat-header-cell *matHeaderCellDef>Provincia</th>
+    <td mat-cell *matCellDef="let userCliente">{{ userCliente.provincia.nombre }}</td>
+  </ng-container>
+
   <ng-container matColumnDef="acciones">
-    <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
-    <mat-cell *matCellDef="let cliente">
-      <button mat-icon-button (click)="editarCliente(cliente.idCliente)">
+    <th mat-header-cell *matHeaderCellDef>Acciones</th>
+    <td mat-cell *matCellDef="let userCliente">
+      <button mat-icon-button (click)="editarCliente(userCliente.cliente.idCliente)">
         <mat-icon>edit</mat-icon>
       </button>
-      <button mat-icon-button (click)="eliminarCliente(cliente.idCliente)">
+      <button mat-icon-button (click)="eliminarCliente(userCliente.cliente.idCliente)">
         <mat-icon>delete</mat-icon>
       </button>
-    </mat-cell>
+    </td>
   </ng-container>
 
-  <mat-header-row *matHeaderRowDef="['idCliente', 'nif', 'nombre', 'direccion', 'telefono', 'email', 'acciones']"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: ['idCliente', 'nif', 'nombre', 'direccion', 'telefono', 'email', 'acciones'];"></mat-row>
-</mat-table>
-
+  <!-- Definición de las columnas de la tabla -->
+  <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+  <tr mat-row *matRowDef="let usuario; columns: columnas"></tr>
+</table>

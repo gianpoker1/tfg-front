@@ -1,6 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Compra } from '../models/compra.model';
 import { CompraService } from '../services/compra.service';
+import { MatDialog } from '@angular/material/dialog';
+import { forkJoin } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { AgregarCompraDialogComponent } from './agregar-compra-dialog/agregar-compra-dialog.component';
+import { EditarCompraDialogComponent } from './editar-compra-dialog/editar-compra-dialog.component';
+import { EliminarCompraDialogComponent } from './eliminar-compra-dialog/eliminar-compra-dialog.component';
+import { Proovedor } from '../models/proovedor.model';
+import { ProovedorService } from '../services/proovedor.service';
+import { ProductoService } from '../services/producto.service';
+import { Producto } from '../models/producto.model';
+import { TrabajadorService } from '../services/trabajador.service';
+import { DetalleCompra } from '../models/detalle-compra';
+
 
 @Component({
   selector: 'app-compra',
@@ -8,37 +21,105 @@ import { CompraService } from '../services/compra.service';
   styleUrls: ['./compra.component.css']
 })
 export class CompraComponent implements OnInit {
-  compras: Compra[] = [];
-  compraSeleccionada: Compra | undefined;
 
-  constructor(private compraService: CompraService) { }
+  compras: Compra[] = [];
+  proovedores: Proovedor[] = [];
+  productos: Producto[] = [];
+  detalleCompras: DetalleCompra[] = [];
+  columnas: string[] = ['fecha','cantidad','precio', 'total','proovedor','producto','trabajador', 'acciones'];
+
+  
+
+
+
+  constructor(
+    private compraService: CompraService,
+    private dialog: MatDialog,
+    private proovedorService: ProovedorService,
+    private productoService: ProductoService,
+    private trabajadorService: TrabajadorService
+    ) { }
 
   ngOnInit(): void {
     this.getCompras();
   }
 
   getCompras(): void {
-    this.compraService.obtenerCompras().subscribe(
-      compras => {
-        this.compras = compras;
-      }
-    );
-  }
-
-  agregar(compra: Compra): void {
-    if (!compra) { return; }
-    this.compraService.agregarCompra(compra)
-      .subscribe(compra => {
-        this.compras.push(compra);
+    /* this.compraService.obtenerCompras().subscribe(compras => {
+      this.compras = compras;
+      const requests = this.compras.map(compra => {
+        return this.proovedorService.obtenerProovedorPorId(compra.idProovedor),
+              this.productoService.obtenerProductoPorId(compra.idProducto);
       });
+      forkJoin(requests).subscribe(proovedores => {
+        this.proovedores = proovedores;
+        this.productos = productos;
+
+        
+      });
+    }); */
+
+    this.compraService.obtenerCompras().subscribe(compras => {
+      this.compras = compras;
+      const requests = this.compras.map(compra => {
+        const proovedorRequest = this.proovedorService.obtenerProovedorPorId(compra.idProovedor);
+        const productoRequest = this.productoService.obtenerProductoPorId(compra.idProducto);
+        const trabajadorRequest = this.trabajadorService.obtenerTrabajadorPorId(compra.idTrabajador);
+
+        return forkJoin([proovedorRequest, productoRequest, trabajadorRequest]).pipe(
+          map(([proovedor, producto, trabajador]) => ({
+            compra, 
+            proovedor, 
+            producto, trabajador
+          }))
+      );
+      });
+      forkJoin(requests).subscribe(detalleCompras => {
+        this.detalleCompras = detalleCompras;
+        
+      });
+    });
   }
 
-  eliminar(compra: Compra): void {
-    this.compras = this.compras.filter(c => c !== compra);
-    this.compraService.eliminarCompra(compra.idCompra).subscribe();
+  agregarCompra(): void {
+    const dialogRef = this.dialog.open(AgregarCompraDialogComponent, {
+      width: '1000px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.getCompras();
+      }
+    });
   }
 
-  onSelect(compra: Compra): void {
-    this.compraSeleccionada = compra;
+  editarCompra(detalleCompra: DetalleCompra): void{
+    const dialogRef = this.dialog.open(EditarCompraDialogComponent, {
+      width: '1000px',
+      data: detalleCompra
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.getCompras();
+      }
+    });
   }
+
+  eliminarCompra(idCompra: number): void{
+    const dialogRef = this.dialog.open(EliminarCompraDialogComponent, {
+      width: '550px',
+      data: idCompra
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.getCompras();
+      }
+    });
+  }
+
+ 
+
+
 }

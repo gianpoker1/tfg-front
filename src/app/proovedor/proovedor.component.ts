@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Proovedor } from 'src/app/models/proovedor.model';
 import { ProovedorService } from 'src/app/services/proovedor.service';
-import { EliminarProveedorDialogComponent } from '../eliminar-proveedor-dialog/eliminar-proveedor-dialog.component';
-import { EditarProveedorDialogComponent } from '../editar-proveedor-dialog/editar-proveedor-dialog.component';
+import { EliminarProveedorDialogComponent } from './eliminar-proveedor-dialog/eliminar-proveedor-dialog.component';
+import { EditarProveedorDialogComponent } from './editar-proveedor-dialog/editar-proveedor-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({

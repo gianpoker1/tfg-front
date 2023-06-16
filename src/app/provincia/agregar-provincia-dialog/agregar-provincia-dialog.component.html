@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>Agregar Provincia</h2>
+<mat-dialog-content>
+    <form [formGroup]="nuevaProvinciaForm" (ngSubmit)="nuevaProvinciaForm.valid && agregarProvincia()">
+        <mat-form-field class="full-width">
+            <label for="nombre">Nombre</label>
+            <input matInput type="text" formControlName="nombre" required>
+            <mat-error *ngIf="nuevaProvinciaForm.controls['nombre'].invalid">El nombre es requerido.</mat-error>
+        </mat-form-field>
+        <br>
+        <br>
+        <mat-form-field class="full-width">
+            <mat-select placeholder="País" formControlName="idPais" required>
+                <mat-option *ngFor="let pais of paises" [value]="pais.idPais">{{pais.nombre}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="nuevaProvinciaForm.controls['idPais'].invalid">El país es requerido.</mat-error>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions class="dialog-actions">
+    <button mat-raised-button color="primary" [disabled]="nuevaProvinciaForm.invalid" (click)="agregarProvincia()">Agregar</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="null">Cancelar</button>
+</mat-dialog-actions>

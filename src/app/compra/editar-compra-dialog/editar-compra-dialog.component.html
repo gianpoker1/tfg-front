@@ -1,0 +1,59 @@
+<h1 mat-dialog-title>Editar Compra</h1>
+<mat-dialog-content>
+    <form [formGroup]="compraForm">
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Fecha</mat-label>
+            <input matInput type="date" formControlName="fecha" [value]="compra.fecha" required>
+            <mat-error *ngIf="compraForm.controls['fecha'].invalid">
+                La fecha es requerida
+            </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Cantidad</mat-label>
+            <input matInput type="number" formControlName="cantidad" [value]="compra.cantidad" required>
+            <mat-error *ngIf="compraForm.controls['cantidad'].invalid">
+                La cantidad es requerida
+            </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Precio Unitario</mat-label>
+            <input matInput type="number" formControlName="precioUnidad" [value]="compra.precioUnidad" required>
+            <mat-error *ngIf="compraForm.controls['precioUnidad'].invalid">
+                El precio es requerido
+            </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Proovedor</mat-label>
+            <mat-select formControlName="idProovedor" required>
+                <mat-option *ngFor="let proovedor of proovedores" [value]="proovedor.idProovedor">
+                    {{ proovedor.nombre }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Producto</mat-label>
+            <mat-select formControlName="idProducto" required>
+                <mat-option *ngFor="let producto of productos" [value]="producto.idProducto">
+                    {{ producto.nombre }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Trabajador</mat-label>
+            <mat-select formControlName="idTrabajador" required>
+                <mat-option *ngFor="let trabajador of trabajadores" [value]="trabajador.idTrabajador">
+                    {{ obtenerNombreTrabajador(trabajador.idUsuario) }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" (click)="cerrarDialog()">Cancelar</button>
+    <button mat-raised-button color="primary" (click)="guardarCambios()">Guardar</button>
+</mat-dialog-actions>

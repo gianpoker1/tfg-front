@@ -31,4 +31,8 @@ export class ServicioService {
   eliminarServicio(id: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
   }
+
+  obtenerServiciosPorIdUsuario(idUsuario: number): Observable<Servicio[]> {
+    return this.http.get<Servicio[]>(`${this.baseUrl}/usuario/${idUsuario}`);
+  }
 }

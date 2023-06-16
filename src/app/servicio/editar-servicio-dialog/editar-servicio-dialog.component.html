@@ -1,0 +1,72 @@
+<h2 mat-dialog-title>Editar servicio</h2>
+<mat-dialog-content>
+  <form [formGroup]="servicioForm">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Cliente</mat-label>
+      <mat-select formControlName="idCliente" required>
+        <mat-option *ngFor="let usuario of usuarios" [value]="usuario.id">{{usuario.nombre}}</mat-option>
+      </mat-select>
+        <mat-error *ngIf="servicioForm.controls['idCliente'].invalid">El campo ID Cliente es requerido.</mat-error>
+    </mat-form-field>
+    <br>
+    <br>
+    <mat-form-field class="full-width">
+      <mat-label>Fecha de Inicio</mat-label>
+      <input matInput [matDatepicker]="fechaInicioPicker" formControlName="fechaInicio" placeholder="Fecha de Inicio" required>
+      <mat-datepicker-toggle matSuffix [for]="fechaInicioPicker"></mat-datepicker-toggle>
+      <mat-datepicker #fechaInicioPicker></mat-datepicker>
+      <mat-error *ngIf="servicioForm.controls['fechaInicio'].invalid">El campo Fecha de Inicio es requerido.</mat-error>
+    </mat-form-field>
+    <br>
+    <br>
+    <mat-form-field class="full-width">
+      <mat-label>Fecha de Entrega</mat-label>
+      <input matInput [matDatepicker]="fechaEntregaPicker" formControlName="fechaEntrega" placeholder="Fecha de Entrega" required>
+      <mat-datepicker-toggle matSuffix [for]="fechaEntregaPicker"></mat-datepicker-toggle>
+      <mat-datepicker #fechaEntregaPicker></mat-datepicker>
+      <mat-error *ngIf="servicioForm.controls['fechaEntrega'].invalid">El campo Fecha de Entrega es requerido.</mat-error>
+    </mat-form-field>
+    <br>
+    <br>
+    <mat-form-field class="full-width">
+      <mat-label>Subtotal</mat-label>
+      <input matInput formControlName="subtotal" placeholder="Subtotal" required>
+    </mat-form-field>
+    <mat-checkbox formControlName="entregado" class="example-margin">Entregado</mat-checkbox>
+    <br>
+    <br>
+    <mat-form-field class="full-width">
+      <mat-label>Forma de Pago</mat-label>
+      <input matInput formControlName="formaDePago" placeholder="Forma de Pago" required>
+    </mat-form-field>
+    <br>
+    <br>
+    <mat-form-field class="full-width"> 
+      <mat-label>Notas</mat-label>
+      <input matInput formControlName="notas" placeholder="Notas" required>
+    </mat-form-field>
+    <br>
+    <br>
+    <mat-form-field class="full-width">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="nombre" placeholder="Nombre" required>
+    </mat-form-field>
+    <br>
+    <br>
+    <mat-form-field class="full-width">
+      <mat-label>Trabajador</mat-label>
+      <mat-label>Cliente</mat-label>
+      <mat-select formControlName="idCliente" required>
+        <mat-option *ngFor="let trabajador of usuarioTrabajador" [value]="trabajador.id">{{trabajador.nombre}}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="servicioForm.controls['idTrabajador'].invalid">El campo ID Trabajador es requerido.</mat-error>
+    </mat-form-field>
+    <br>
+    <br>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions class="dialog-actions">
+  <button mat-button (click)="guardarCambios()">Guardar cambios</button>
+  <button mat-button (click)="cancelar()">Cancelar</button>
+</mat-dialog-actions>
+

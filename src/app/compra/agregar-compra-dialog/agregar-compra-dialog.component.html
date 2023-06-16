@@ -1,0 +1,69 @@
+<h2 mat-dialog-title>Agregar Compra</h2>
+<mat-dialog-content>
+    <form [formGroup]="nuevaCompraForm" (ngSubmit)="nuevaCompraForm.valid && agregarCompra()">
+        <mat-form-field class="full-width">
+            <mat-label>Fecha</mat-label>
+            <input matInput type="date" formControlName="fecha" required>
+            <mat-error *ngIf="nuevaCompraForm.controls['fecha'].hasError('required')">
+                La fecha es requerida
+            </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="full-width">
+            <mat-label>Cantidad</mat-label>
+            <input matInput type="number" formControlName="cantidad" required>
+            <mat-error *ngIf="nuevaCompraForm.controls['cantidad'].hasError('required')">
+                La cantidad es requerida
+            </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="full-width">
+            <mat-label>Precio Unidad</mat-label>
+            <input matInput type="number" formControlName="precioUnidad" required>
+            <mat-error *ngIf="nuevaCompraForm.controls['precioUnidad'].hasError('required')">
+                El precio unidad es requerido
+            </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="full-width">
+            <mat-label>Proovedor</mat-label>
+            <mat-select formControlName="idProovedor" required>
+                <mat-option *ngFor="let proovedor of proovedores" [value]="proovedor.idProovedor">
+                    {{ proovedor.nombre }}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="nuevaCompraForm.controls['idProovedor'].hasError('required')">
+                El proovedor es requerido
+            </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="full-width">
+            <mat-label>Producto</mat-label>
+            <mat-select formControlName="idProducto" required>
+                <mat-option *ngFor="let producto of productos" [value]="producto.idProducto">
+                    {{ producto.nombre }}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="nuevaCompraForm.controls['idProducto'].hasError('required')">
+                El producto es requerido
+            </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="full-width">
+            <mat-label>Trabajador</mat-label>
+            <mat-select formControlName="idTrabajador" required>
+                <mat-option *ngFor="let trabajador of trabajadores" [value]="trabajador.idTrabajador">
+                    {{obtenerNombreTrabajador(trabajador.idUsuario)}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="nuevaCompraForm.controls['idTrabajador'].hasError('required')">
+                El trabajador es requerido
+            </mat-error>
+        </mat-form-field>
+        <br>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" mat-dialog-close>Cancelar</button>
+    <button mat-raised-button color="primary" [disabled]="nuevaCompraForm.invalid" (click)="agregarCompra()" cdkFocusInitial>Guardar</button>
+</mat-dialog-actions>

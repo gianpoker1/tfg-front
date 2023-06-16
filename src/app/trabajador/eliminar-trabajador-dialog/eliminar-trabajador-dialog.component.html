@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Eliminar Trabajador</h1>
+<div mat-dialog-content>
+  <p>¿Está seguro de que desea eliminar a {{nombreUsuario}} ?</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="warn" (click)="eliminarTrabajador()">Eliminar</button>
+  <button mat-raised-button (click)="cancelar()">Cancelar</button>
+</div>

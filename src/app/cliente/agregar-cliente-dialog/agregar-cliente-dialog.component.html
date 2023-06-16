@@ -1,0 +1,97 @@
+<h2 mat-dialog-title>Agregar Cliente</h2>
+<mat-dialog-content>
+    <form [formGroup]="nuevoClienteForm" (ngSubmit)="nuevoClienteForm.valid && agregarCliente()">
+        <mat-form-field class="full-width">
+            <mat-label>UserName</mat-label>
+            <input matInput placeholder="UserName" formControlName="userName" type="email" required>
+            <mat-error *ngIf="nuevoClienteForm.get('userName')?.hasError('required')">
+                El email es requerido
+              </mat-error>
+            <mat-error *ngIf="nuevoClienteForm.get('userName')?.hasError('email')">
+                El email no es válido
+            </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="full-width">
+            <mat-label>Contraseña</mat-label>
+            <input matInput placeholder="Contraseña" formControlName="password" type="password" required>
+            <mat-error *ngIf="nuevoClienteForm.controls['password'].hasError('required')">
+                La contraseña es requerida
+            </mat-error>
+            <mat-error *ngIf="nuevoClienteForm.controls['password'].hasError('minlength')">
+                La contraseña debe tener al menos 8 caracteres
+            </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="full-width">
+            <mat-label>Nombre</mat-label>
+            <input matInput placeholder="Nombre" formControlName="nombre" required>
+            <mat-error *ngIf="nuevoClienteForm.controls['nombre'].hasError('required')">
+                El nombre es requerido
+            </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="full-width">
+            <mat-label>Apellido</mat-label>
+            <input matInput placeholder="Apellido" formControlName="apellido" required>
+            <mat-error *ngIf="nuevoClienteForm.controls['apellido'].hasError('required')">
+                El apellido es requerido
+            </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="full-width">
+            <mat-label>DNI</mat-label>
+            <input matInput placeholder="DNI" formControlName="dni" required>
+            <mat-error *ngIf="nuevoClienteForm.controls['dni'].hasError('required')">
+                El DNI es requerido
+            </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="full-width">
+            <mat-label>Teléfono</mat-label>
+            <input matInput placeholder="Teléfono" formControlName="telefono" required>
+            <mat-error *ngIf="nuevoClienteForm.controls['telefono'].hasError('required')">
+                El teléfono es requerido
+            </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="full-width">
+            <mat-label>Dirección</mat-label>
+            <input matInput placeholder="Dirección" formControlName="direccion" required>
+            <mat-error *ngIf="nuevoClienteForm.controls['direccion'].hasError('required')">
+                La dirección es requerida
+            </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="full-width">
+            <mat-label>País</mat-label>
+            <mat-select formControlName="pais" required>
+                <mat-option *ngFor="let pais of paises" [value]="pais.idPais">
+                    {{ pais.nombre }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="full-width">
+            <mat-label>Provincia</mat-label>
+            <mat-select formControlName="provincia" required>
+                <mat-option *ngFor="let provincia of provincias" [value]="provincia.idProvincia">
+                    {{ provincia.nombre }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="full-width">
+            <mat-label>Ciudad</mat-label>
+            <mat-select formControlName="ciudad" required>
+                <mat-option *ngFor="let ciudad of ciudades" [value]="ciudad.idCiudad">
+                    {{ ciudad.nombre }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button color="primary" [disabled]="nuevoClienteForm.invalid" (click)="agregarCliente()">Agregar</button>
+    <button mat-raised-button color="primary" (click)="cancelar()">Cancelar</button>
+</mat-dialog-actions>

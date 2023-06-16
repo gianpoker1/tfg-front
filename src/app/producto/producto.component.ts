@@ -2,8 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ProductoService } from '../services/producto.service';
 import { Producto } from '../models/producto.model';
 import { MatDialog } from '@angular/material/dialog';
-import { EditarProductoDialogComponent } from '../editar-producto-dialog/editar-producto-dialog.component';
-import { EliminarProductoDialogComponent } from '../eliminar-producto-dialog/eliminar-producto-dialog.component';
+import { EditarProductoDialogComponent } from './editar-producto-dialog/editar-producto-dialog.component';
+import { EliminarProductoDialogComponent } from './eliminar-producto-dialog/eliminar-producto-dialog.component';
+import { AgregarProductoDialogComponent } from './agregar-producto-dialog/agregar-producto-dialog.component';
+import { Categoria } from '../models/categoria.model';
+import { forkJoin } from 'rxjs';
+import { CategoriaService } from '../services/categoria.service';
 
 @Component({
   selector: 'app-producto',
@@ -13,25 +17,47 @@ import { EliminarProductoDialogComponent } from '../eliminar-producto-dialog/eli
 export class ProductoComponent implements OnInit {
 
   productos!: Producto[];
+  categorias: Categoria[] = [];
 
   columnas: string[] = ['nombre', 'descripcion', 'precio', 'existencias', 'idCategoria', 'acciones'];
 
 
   constructor(private productoService: ProductoService,
+    private categoriaService: CategoriaService,
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getProductos();
   }
 
+  agregarProductoDialog(): void {
+    const dialogRef = this.dialog.open(AgregarProductoDialogComponent, {
+      width: '1000px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.productoService.agregarProducto(result)
+          .subscribe(() => {
+            this.getProductos();
+          });
+      }
+    });
+  }
+
   getProductos(): void {
-    this.productoService.obtenerProductos()
-      .subscribe(productos => this.productos = productos);
+    forkJoin([
+      this.productoService.obtenerProductos(),
+      this.categoriaService.obtenerCategorias()
+    ]).subscribe(([productos, categorias]) => {
+      this.productos = productos;
+      this.categorias = categorias;
+    });
   }
 
   editarProductoDialog(idProducto: number): void {
     const dialogRef = this.dialog.open(EditarProductoDialogComponent, {
-      width: '500px',
+      width: '1000px',
       data: idProducto
     });
 
@@ -53,5 +79,10 @@ export class ProductoComponent implements OnInit {
         this.getProductos();
       }
     });
+  }
+
+  obtenerNombreCategoria(idCategoria: number): string {
+    const categoria = this.categorias.find(c => c.idCategoria === idCategoria);
+    return categoria ? categoria.nombre : 'Sin categoria';
   }
 }

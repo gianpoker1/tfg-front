@@ -1,0 +1,35 @@
+<h2>Actualizar Ciudad</h2>
+<mat-dialog-content>
+<form [formGroup]="ciudadForm">
+    <mat-form-field class="full-width">
+        <mat-label>Nombre</mat-label>
+        <input matInput placeholder="Nombre" formControlName="nombre" required>
+        <mat-error *ngIf="ciudadForm.controls['nombre'].hasError('required')">
+            El nombre es requerido</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="full-width">
+        <mat-label>Pais</mat-label>
+        <mat-select placeholder="Seleccionar Pais" formControlName="idPais"  required>
+            <mat-option *ngFor="let pais of paises" [value]="pais.idPais">
+                {{pais.nombre}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="full-width">
+        <mat-label>Provincia</mat-label>
+        <mat-select placeholder="Seleccionar Provincia" formControlName="idProvincia" required>
+            <mat-option *ngFor="let provincia of provincias" [value]="provincia.idProvincia" >
+                {{provincia.nombre}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <br>
+    <br>
+    <button mat-button [disabled]="ciudadForm.invalid" (click)="actualizarCiudad()">Actualizar</button>
+    <button mat-button (click)="cancelar()">Cancelar</button>
+</mat-dialog-actions>

@@ -1,0 +1,43 @@
+<h2 mat-dialog-title>Editar producto</h2>
+<mat-dialog-content>
+  <form [formGroup]="productoForm">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="nombre" placeholder="Nombre">
+      <mat-error *ngIf="productoForm.controls['nombre'].invalid">El campo Nombre es requerido.</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Descripción</mat-label>
+      <input matInput formControlName="descripcion" placeholder="Descripción">
+      <mat-error *ngIf="productoForm.controls['descripcion'].invalid">El campo Descripción es requerido.</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Precio</mat-label>
+      <input matInput formControlName="precio" placeholder="Precio">
+      <mat-error *ngIf="productoForm.controls['precio'].invalid">El campo Precio es requerido.</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Existencias</mat-label>
+      <input matInput formControlName="existencias" placeholder="Existencias">
+      <mat-error *ngIf="productoForm.controls['existencias'].invalid">El campo Existencias es requerido.</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="full-width">
+      <mat-label>Categoría</mat-label>
+      <mat-select placeholder="Seleccionar categoría" formControlName="idCategoria" required>
+        <mat-option *ngFor="let categoria of categorias" [value]="categoria.idCategoria">
+          {{ categoria.nombre }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions class="dialog-actions">
+  <button mat-button (click)="guardarCambios()">Guardar cambios</button>
+  <button mat-button (click)="cancelar()">Cancelar</button>
+</mat-dialog-actions>
+

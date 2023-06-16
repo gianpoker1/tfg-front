@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Ciudad } from '../models/ciudad.model';
+import { CiudadConProvinciaYPais } from '../models/ciudad-con-provincia-ypais';
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +31,10 @@ export class CiudadService {
 
   eliminarCiudad(id: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
+  }
+
+  obtenerCiudadConProvinciaYPais(idCiudad: number): Observable<CiudadConProvinciaYPais>{
+    const url = `${this.baseUrl}/conProYPais/${idCiudad}`;
+    return this.http.get<CiudadConProvinciaYPais>(url);
   }
 }
