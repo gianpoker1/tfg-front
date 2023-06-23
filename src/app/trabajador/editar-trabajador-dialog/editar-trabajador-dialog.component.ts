@@ -4,7 +4,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TrabajadorService } from '../../services/trabajador.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Usuario } from '../../models/usuario.model';
-import { UsuarioService } from '../../services/usuario.service';
 import { Trabajador } from '../../models/trabajador.model';
 import { UserTrabajador } from '../../models/user-trabajador';
 import { PaisService } from '../../services/pais.service';
@@ -66,7 +65,6 @@ export class EditarTrabajadorDialogComponent{
       this.usuario = userTrabajador.usuario;
       this.trabajador = userTrabajador.trabajador;
       this.rolesDeTrabajador = userTrabajador.roles;
-      console.log('ROLES DE TRABAJADOR: ', userTrabajador.roles);
       this.trabajadorForm.patchValue({
         username: this.usuario.userName,
         dni: this.usuario.dni,

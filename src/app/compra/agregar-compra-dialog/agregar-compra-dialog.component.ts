@@ -42,7 +42,7 @@ export class AgregarCompraDialogComponent {
 
   ngOnInit(): void {
     this.nuevaCompraForm = this.formBuilder.group({
-      fecha: ['', Validators.required],
+      fecha: [new Date(), Validators.required],
       cantidad: ['', Validators.required],
       precioUnidad: ['', Validators.required],
       total: 0,

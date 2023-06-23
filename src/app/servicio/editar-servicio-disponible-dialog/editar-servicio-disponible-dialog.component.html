@@ -1,0 +1,33 @@
+<h2 mat-dialog-title>Editar Servicio Disponible</h2>
+<br>
+<mat-dialog-content>
+    <form [formGroup]="servicioDisponibleForm">
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="nombre" placeholder="Nombre" required>
+            <mat-error *ngIf="servicioDisponibleForm.controls['nombre'].invalid">El campo Nombre es requerido.</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Descripción</mat-label>
+            <input matInput formControlName="descripcion" placeholder="Descripción" required>
+            <mat-error *ngIf="servicioDisponibleForm.controls['descripcion'].invalid">El campo Descripción es requerido.</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Precio</mat-label>
+            <input matInput formControlName="precio" placeholder="Precio" required>
+            <mat-error *ngIf="servicioDisponibleForm.controls['precio'].invalid">El campo Precio es requerido.</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Duracion</mat-label>
+            <input matInput formControlName="duracion" placeholder="Duracion" required>
+            <mat-error *ngIf="servicioDisponibleForm.controls['duracion'].invalid">El campo Duracion es requerido.</mat-error>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button (click)="cancelar()">Cancelar</button>
+    <button mat-button (click)="guardarServicioDisponible()">Guardar</button>
+</mat-dialog-actions>

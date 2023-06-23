@@ -21,7 +21,14 @@ export class LoginComponent {
       console.log('Resultado del inicio de sesión:', result);
       if (result) {
         
-        this.router.navigate(['/servicios']);
+        if(this.authService.isAdmin()){
+          this.router.navigate(['/servicios']);
+        }else if (this.authService.isTrabajador()){
+          this.router.navigate(['/servicios']);
+        }else if (this.authService.isCliente()){
+          this.router.navigate(['/usuarioServicio']);
+        }
+
       } else {
         alert('Nombre de usuario o contraseña incorrectos');
       }

@@ -1,0 +1,47 @@
+<h2 mat-dialog-title>Solicitar Nuevo Servicio</h2>
+<br>
+<mat-dialog-content>
+    <form [formGroup]="nuevoServicioSolicitadoForm">
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="nombre" placeholder="Nombre" required>
+            <mat-error *ngIf="nuevoServicioSolicitadoForm.controls['nombre'].invalid">El campo Nombre es requerido.</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Descripción</mat-label>
+            <input matInput formControlName="descripcion" placeholder="Descripción" required>
+            <mat-error *ngIf="nuevoServicioSolicitadoForm.controls['descripcion'].invalid">El campo Descripción es requerido.</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Notas Adicionales</mat-label>
+            <textarea class="resizable-input" matInput formControlName="notasAdicionales" placeholder="Notas Adicionales" required></textarea>
+            <mat-error *ngIf="nuevoServicioSolicitadoForm.controls['notasAdicionales'].invalid">El campo Notas Adicionales es requerido.</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Precio</mat-label>
+            <input matInput formControlName="precio" placeholder="Precio" required>
+            <mat-error *ngIf="nuevoServicioSolicitadoForm.controls['precio'].invalid">El campo Precio es requerido.</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Duracion</mat-label>
+            <input matInput formControlName="duracion" placeholder="Duracion" required>
+            <mat-error *ngIf="nuevoServicioSolicitadoForm.controls['duracion'].invalid">El campo Duracion es requerido.</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="full-width">
+            <label for="fechaSolicitud">Fecha</label>
+            <input matInput [matDatepicker]="picker" formControlName="fechaSolicitud" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="nuevoServicioSolicitadoForm.controls['fechaSolicitud'].invalid">El campo Fecha es requerido.</mat-error>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button (click)="cancelar()">Cancelar</button>
+    <button mat-button color="primary" (click)="guardarServicioSolicitado()">Solicitar</button>
+</mat-dialog-actions>

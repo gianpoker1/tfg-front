@@ -1,0 +1,70 @@
+<h2 mat-dialog-title>Agregar Proveedor</h2>
+<mat-dialog-content>
+    <form [formGroup]="nuevoProveedorForm" (ngSubmit)="nuevoProveedorForm.valid && agregarProveedor()">
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>NIF</mat-label>
+            <input matInput formControlName="nif" required>
+            <mat-error *ngIf="nuevoProveedorForm.controls['nif'].hasError('required')">
+                El NIF es requerido
+            </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="nombre" required>
+            <mat-error *ngIf="nuevoProveedorForm.controls['nombre'].hasError('required')">
+                El nombre es requerido
+            </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Direccion</mat-label>
+            <input matInput formControlName="direccion" required>
+            <mat-error *ngIf="nuevoProveedorForm.controls['direccion'].hasError('required')">
+                La direccion es requerida
+            </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Telefono</mat-label>
+            <input matInput formControlName="telefono" required>
+            <mat-error *ngIf="nuevoProveedorForm.controls['telefono'].hasError('required')">
+                El telefono es requerido
+            </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Pais</mat-label>
+            <mat-select formControlName="idPais" required>
+                <mat-option *ngFor="let pais of paises" [value]="pais.idPais">{{pais.nombre}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Ciudad</mat-label>
+            <mat-select formControlName="idCiudad" required>
+                <mat-option *ngFor="let ciudad of ciudades" [value]="ciudad.idCiudad">{{ciudad.nombre}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Provincia</mat-label>
+            <mat-select formControlName="idProvincia" required>
+                <mat-option *ngFor="let provincia of provincias" [value]="provincia.idProvincia">{{provincia.nombre}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" required>
+            <mat-error *ngIf="nuevoProveedorForm.controls['email'].hasError('required')">
+                El email es requerido
+            </mat-error>
+        </mat-form-field>
+        <br>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" (click)="cancelar()">Cancelar</button>
+    <button mat-raised-button color="primary" [disabled]="nuevoProveedorForm.invalid" (click)="agregarProveedor()">Agregar</button>
+</mat-dialog-actions>

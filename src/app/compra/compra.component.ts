@@ -45,19 +45,6 @@ export class CompraComponent implements OnInit {
   }
 
   getCompras(): void {
-    /* this.compraService.obtenerCompras().subscribe(compras => {
-      this.compras = compras;
-      const requests = this.compras.map(compra => {
-        return this.proovedorService.obtenerProovedorPorId(compra.idProovedor),
-              this.productoService.obtenerProductoPorId(compra.idProducto);
-      });
-      forkJoin(requests).subscribe(proovedores => {
-        this.proovedores = proovedores;
-        this.productos = productos;
-
-        
-      });
-    }); */
 
     this.compraService.obtenerCompras().subscribe(compras => {
       this.compras = compras;

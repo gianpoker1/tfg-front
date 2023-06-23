@@ -12,6 +12,9 @@ import { ProveedorComponent } from './proovedor/proovedor.component';
 import { ProvinciaComponent } from './provincia/provincia.component';
 import { LoginComponent } from './login/login.component';
 import { ServiciosUsuarioComponent } from './servicio/servicios-usuario/servicios-usuario.component';
+import { ServiciosDisponiblesComponent } from './servicio/servicios-disponibles/servicios-disponibles.component';
+import { ServiciosDisponiblesAdminComponent } from './servicio/servicios-disponibles-admin/servicios-disponibles-admin.component';
+import { ListaProductosClientComponent } from './producto/lista-productos-client/lista-productos-client.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -25,7 +28,10 @@ const routes: Routes = [
   { path: 'producto', component: ProductoComponent },
   { path: 'proovedores', component: ProveedorComponent },
   { path: 'provincias', component: ProvinciaComponent },
-  { path: 'usuarioServicio', component: ServiciosUsuarioComponent}
+  { path: 'usuarioServicio', component: ServiciosUsuarioComponent},
+  { path: 'serviciosDisponibles', component: ServiciosDisponiblesComponent},
+  { path: 'serviciosDisponiblesAdmin', component: ServiciosDisponiblesAdminComponent},
+  { path: 'productosClient', component: ListaProductosClientComponent}
 ];
 
 @NgModule({

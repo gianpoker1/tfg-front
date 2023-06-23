@@ -3,7 +3,9 @@
     <form [formGroup]="nuevaCompraForm" (ngSubmit)="nuevaCompraForm.valid && agregarCompra()">
         <mat-form-field class="full-width">
             <mat-label>Fecha</mat-label>
-            <input matInput type="date" formControlName="fecha" required>
+            <input matInput [matDatepicker]="picker" formControlName="fecha" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
             <mat-error *ngIf="nuevaCompraForm.controls['fecha'].hasError('required')">
                 La fecha es requerida
             </mat-error>

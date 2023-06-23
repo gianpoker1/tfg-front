@@ -45,7 +45,8 @@ export class EditarProveedorDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.proveedorService.obtenerProovedorPorId(this.data).subscribe((proveedor: Proovedor) => {
+    console.log('DATA: ',this.data);
+    this.proveedorService.obtenerProovedorPorId(this.data).subscribe(proveedor => {
       this.proveedorForm.patchValue(proveedor);
     });
     this.paisService.obtenerPaises().subscribe((paises: Pais[]) => {

@@ -1,49 +1,49 @@
 <h2 mat-dialog-title>Editar proveedor</h2>
 <mat-dialog-content>
   <form [formGroup]="proveedorForm">
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" class="full-width">
       <mat-label>NIF</mat-label>
       <input matInput formControlName="nif" placeholder="NIF">
       <mat-error *ngIf="proveedorForm.controls['nif'].invalid">El campo NIF es requerido.</mat-error>
     </mat-form-field>
     <br>
-    <mat-form-field>
+    <mat-form-field appearance="fill" class="full-width">
       <input matInput placeholder="Nombre" formControlName="nombre" required>
       <mat-error *ngIf="proveedorForm.controls['nombre'].invalid">El campo Nombre es requerido.</mat-error>
     </mat-form-field>
     <br>
-    <mat-form-field>
+    <mat-form-field appearance="fill" class="full-width">
       <input matInput placeholder="Dirección" formControlName="direccion" required>
       <mat-error *ngIf="proveedorForm.controls['direccion'].invalid">El campo Dirección es requerido.</mat-error>
     </mat-form-field>
     <br>
-    <mat-form-field>
+    <mat-form-field appearance="fill" class="full-width">
       <input matInput placeholder="Teléfono" formControlName="telefono" required>
       <mat-error *ngIf="proveedorForm.controls['telefono'].invalid">El campo Teléfono es requerido.</mat-error>
     </mat-form-field>
     <br>
-    <mat-form-field>
+    <mat-form-field appearance="fill" class="full-width"> 
       <mat-select formControlName="idPais" placeholder="País" required>
         <mat-option *ngFor="let pais of paises" [value]="pais.idPais">{{pais.nombre}}</mat-option>
       </mat-select>
       <mat-error *ngIf="proveedorForm.controls['idPais'].invalid">El campo País es requerido.</mat-error>
     </mat-form-field>
     <br>
-    <mat-form-field>
+    <mat-form-field appearance="fill" class="full-width">
       <mat-select formControlName="idCiudad" placeholder="Ciudad" required>
         <mat-option *ngFor="let ciudad of ciudades" [value]="ciudad.idCiudad">{{ciudad.nombre}}</mat-option>
       </mat-select>
       <mat-error *ngIf="proveedorForm.controls['idCiudad'].invalid">El campo Ciudad es requerido.</mat-error>
     </mat-form-field>
     <br>
-    <mat-form-field>
+    <mat-form-field appearance="fill" class="full-width">
       <mat-select formControlName="idProvincia" placeholder="Provincia" required>
         <mat-option *ngFor="let provincia of provincias" [value]="provincia.idProvincia">{{provincia.nombre}}</mat-option>
       </mat-select>
       <mat-error *ngIf="proveedorForm.controls['idProvincia'].invalid">El campo Provincia es requerido.</mat-error>
     </mat-form-field>
     <br>
-    <mat-form-field>
+    <mat-form-field appearance="fill" class="full-width">
       <input matInput placeholder="Email" formControlName="email" required>
       <mat-error *ngIf="proveedorForm.controls['email'].invalid">El campo Email es requerido.</mat-error>
     </mat-form-field>

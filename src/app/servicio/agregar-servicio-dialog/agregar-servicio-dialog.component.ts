@@ -4,9 +4,10 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { ServicioService } from '../../services/servicio.service';
 import { Cliente } from '../../models/cliente.model';
 import { ClienteService } from '../../services/cliente.service';
-import { Usuario } from '../../models/usuario.model';
-import { UsuarioService } from '../../services/usuario.service';
 import { AuthService } from '../../services/auth.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserCliente } from 'src/app/models/user-cliente';
+import { TrabajadorService } from 'src/app/services/trabajador.service';
 
 @Component({
   selector: 'app-agregar-servicio-dialog',
@@ -14,36 +15,41 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./agregar-servicio-dialog.component.css']
 })
 export class AgregarServicioDialogComponent {
-  nuevoServicio: Servicio = {
-    idServicio: 0,
-    idCliente:0,
-    fechaInicio: new Date(),
-    fechaEntrega: new Date(),
-    subtotal:0,
-    formaDePago:'',
-    notas:'',
-    nombre:'',
-    entregado: false,
-    idTrabajador: 0
-  };
-
+  nuevoServicioForm!: FormGroup;
+  idTrabajador!: number;
   clientes: Cliente[] = [];
-  usuarios : Usuario[] = [];
+  userClientes: UserCliente[]=[];
 
   constructor(
     public dialogRef: MatDialogRef<AgregarServicioDialogComponent>,
+    private formBuilder: FormBuilder,
     private servicioService: ServicioService,
     private clienteService: ClienteService,
-    private usuarioService: UsuarioService,
-    private authService: AuthService
+    private authService: AuthService,
+    private trabajadorService: TrabajadorService
   ) {}
 
   ngOnInit(): void {
     //asignar el id trabajador
     const idTrabajador = this.authService.getTrabajadorId();
+
     if(idTrabajador){
-      this.nuevoServicio.idTrabajador = idTrabajador;
+      this.trabajadorService.obtenerTrabajadorPorIdUsuario(idTrabajador).subscribe(trabajador => {
+        this.idTrabajador = trabajador.idTrabajador;
+      });
+
     }
+    this.nuevoServicioForm = this.formBuilder.group({
+      idCliente: ['',Validators.required],
+      fechaInicio: [new Date(), Validators.required],
+      fechaEntrega: [new Date(),Validators.required],
+      subtotal: ['',Validators.required],
+      formaDePago: ['',Validators.required],
+      notas: ['',Validators.required],
+      nombre: ['',Validators.required],
+      entregado: [''],
+      idTrabajador: [this.idTrabajador]
+    });
     this.obtenerClientes();
   }
 
@@ -51,24 +57,35 @@ export class AgregarServicioDialogComponent {
     this.clienteService.obtenerClientes().subscribe(clientes => {
       this.clientes = clientes;
       this.clientes.forEach(cliente => {
-        this.usuarioService.findById(cliente.idUsuario).subscribe(usuario => {
-          this.usuarios.push(usuario);
-          
+        this.clienteService.obtenerClientePorId(cliente.idCliente).subscribe(userCliente => {
+          this.userClientes.push(userCliente);
         });
       });
     });
   }
 
   agregarServicio(): void {
-    this.servicioService.agregarServicio(this.nuevoServicio).subscribe(
-      (servicio: Servicio) => {
-        console.log('Servicio agregado:', servicio);
-        this.dialogRef.close(true); // Cerrar el diálogo y enviar true al componente padre
-      },
-      error => {
-        console.error('Error al agregar el servicio:', error);
-      }
-    );
+   if(this.nuevoServicioForm.valid){
+    const nuevoServicio: Servicio = {
+      idServicio: 0,
+      idCliente: this.nuevoServicioForm.get('idCliente')?.value,
+      fechaInicio: this.nuevoServicioForm.get('fechaInicio')?.value,
+      fechaEntrega: this.nuevoServicioForm.get('fechaEntrega')?.value,
+      entregado: this.nuevoServicioForm.get('entregado')?.value,
+      subtotal: this.nuevoServicioForm.get('subtotal')?.value,
+      formaDePago: this.nuevoServicioForm.get('formaDePago')?.value,
+      nombre: this.nuevoServicioForm.get('nombre')?.value,
+      notas: this.nuevoServicioForm.get('notas')?.value,
+      idTrabajador: this.idTrabajador
+    };
+
+    this.servicioService.agregarServicio(nuevoServicio).subscribe(() =>{
+      console.log('Servicio agregado');
+      }, error => {
+        console.log('Error al crear Servicio',error);
+      });
+      this.dialogRef.close(true);
+    }
     
   }
 

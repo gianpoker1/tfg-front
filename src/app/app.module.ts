@@ -21,6 +21,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 
 
+
+
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ClienteComponent } from './cliente/cliente.component';
 import { TrabajadorComponent } from './trabajador/trabajador.component';
@@ -66,6 +68,16 @@ import { EditarCompraDialogComponent } from './compra/editar-compra-dialog/edita
 import { EliminarCompraDialogComponent } from './compra/eliminar-compra-dialog/eliminar-compra-dialog.component';
 import { AgregarTrabajadorComponent } from './trabajador/agregar-trabajador/agregar-trabajador.component';
 import { ServiciosUsuarioComponent } from './servicio/servicios-usuario/servicios-usuario.component';
+import { AgregarProveedorDialogComponent } from './proovedor/agregar-proveedor-dialog/agregar-proveedor-dialog.component';
+import { SolicitarServicioDialogComponent } from './servicio/solicitar-servicio-dialog/solicitar-servicio-dialog.component';
+import { ServiciosDisponiblesComponent } from './servicio/servicios-disponibles/servicios-disponibles.component';
+import { ServiciosDisponiblesAdminComponent } from './servicio/servicios-disponibles-admin/servicios-disponibles-admin.component';
+import { AgregarServicioDisponibleDialogComponent } from './servicio/agregar-servicio-disponible-dialog/agregar-servicio-disponible-dialog.component';
+import { EditarServicioDisponibleDialogComponent } from './servicio/editar-servicio-disponible-dialog/editar-servicio-disponible-dialog.component';
+import { EliminarServicioDisponibleDialogComponent } from './servicio/eliminar-servicio-disponible-dialog/eliminar-servicio-disponible-dialog.component';
+import { SolicitarServicioDisponibleDialogComponent } from './servicio/solicitar-servicio-disponible-dialog/solicitar-servicio-disponible-dialog.component';
+import { NotaAdicionalModalComponent } from './servicio/nota-adicional-modal/nota-adicional-modal.component';
+import { ListaProductosClientComponent } from './producto/lista-productos-client/lista-productos-client.component';
 
 @NgModule({
   declarations: [
@@ -111,7 +123,17 @@ import { ServiciosUsuarioComponent } from './servicio/servicios-usuario/servicio
     EditarCompraDialogComponent,
     EliminarCompraDialogComponent,
     AgregarTrabajadorComponent,
-    ServiciosUsuarioComponent
+    ServiciosUsuarioComponent,
+    AgregarProveedorDialogComponent,
+    SolicitarServicioDialogComponent,
+    ServiciosDisponiblesComponent,
+    ServiciosDisponiblesAdminComponent,
+    AgregarServicioDisponibleDialogComponent,
+    EditarServicioDisponibleDialogComponent,
+    EliminarServicioDisponibleDialogComponent,
+    SolicitarServicioDisponibleDialogComponent,
+    NotaAdicionalModalComponent,
+    ListaProductosClientComponent
   ],
   imports: [
     BrowserModule,
@@ -124,6 +146,8 @@ import { ServiciosUsuarioComponent } from './servicio/servicios-usuario/servicio
     MatInputModule,
     MatSelectModule,
     MatOptionModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     FormsModule,
     MatDialogModule,
     ReactiveFormsModule,

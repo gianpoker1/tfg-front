@@ -9,7 +9,6 @@ import { ClienteService } from '../services/cliente.service';
 import { TrabajadorService } from '../services/trabajador.service';
 import { Cliente } from '../models/cliente.model';
 import { Trabajador } from '../models/trabajador.model';
-import { UsuarioService } from '../services/usuario.service';
 
 
 @Component({
@@ -32,7 +31,6 @@ export class ServicioComponent implements OnInit {
     private servicioService: ServicioService,
     private clienteService: ClienteService,
     private trabajadorService: TrabajadorService,
-    private usuarioService: UsuarioService,
     public dialog: MatDialog) { }
 
   ngOnInit() {
@@ -44,13 +42,11 @@ export class ServicioComponent implements OnInit {
     this.servicioService.obtenerServicios().subscribe(servicios => {
       this.servicios = servicios;
       this.servicios.forEach(servicio => {
-        this.usuarioService.findById(servicio.idCliente).subscribe(
-          usuario => {
-          this.nombresClientes[servicio.idCliente] = usuario.nombre;
+        this.clienteService.obtenerClientePorId(servicio.idCliente).subscribe(userCliente => {
+          this.nombresClientes[servicio.idCliente] = userCliente.usuario.nombre;
         });
-        this.usuarioService.findById(servicio.idTrabajador).subscribe(
-          usuario => {
-          this.nombresTrabajadores[servicio.idServicio] = usuario.nombre;
+        this.trabajadorService.obtenerTrabajadorPorId(servicio.idTrabajador).subscribe(userTrabajador => {
+          this.nombresTrabajadores[servicio.idTrabajador] = userTrabajador.usuario.nombre;
         });
       });
     });
@@ -76,9 +72,7 @@ export class ServicioComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.servicioService.agregarServicio(result).subscribe(() => {
-          this.getServicios();
-        });
+        this.getServicios();
       }
     });
   }
@@ -91,9 +85,7 @@ export class ServicioComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.servicioService.obtenerServicios().subscribe(servicios => {
-          this.servicios = servicios;
-        });
+        this.getServicios();
       }
     });
   }

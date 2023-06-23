@@ -1,0 +1,35 @@
+<h2 mat-dialog-title> Agregar Servicio Disponible </h2>
+<br>
+<mat-dialog-content>
+    <form [formGroup]="nuevoServicioDisponibleForm" (submit)="nuevoServicioDisponibleForm.valid && agregarServicioDisponible()">
+
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="nombre" required>
+            <mat-error *ngIf="nuevoServicioDisponibleForm.controls['nombre'].invalid">El campo Nombre es requerido.</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Descripción</mat-label>
+            <input matInput formControlName="descripcion" required>
+            <mat-error *ngIf="nuevoServicioDisponibleForm.controls['descripcion'].invalid">El campo Descripción es requerido.</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Precio</mat-label>
+            <input matInput type="number" formControlName="precio" required>
+            <mat-error *ngIf="nuevoServicioDisponibleForm.controls['precio'].invalid">El campo Precio es requerido.</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Duracion</mat-label>
+            <input matInput type="number" formControlName="duracion" required>
+            <mat-error *ngIf="nuevoServicioDisponibleForm.controls['duracion'].invalid">El campo Duracion es requerido.</mat-error>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<br>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-button (click)="nuevoServicioDisponibleForm.valid && agregarServicioDisponible()">Agregar</button>
+</mat-dialog-actions>

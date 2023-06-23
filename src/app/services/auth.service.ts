@@ -8,6 +8,7 @@ import { Usuario } from '../models/usuario.model';
 import { UsuarioRolService } from './usuario-rol.service';
 import { RolService } from './rol.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { ClienteService } from './cliente.service';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,7 @@ export class AuthService {
     private loginStateService: LoginStateServiceService,
     private usuarioRolService: UsuarioRolService,
     private rolService: RolService,
+    private clienteService: ClienteService,
     private jwtHelper: JwtHelperService) { }
 
 
@@ -121,6 +123,20 @@ export class AuthService {
       return user.id;
     }
     return undefined;
+  }
+
+  getClienteId(): Observable<number | undefined> {
+    const user = this.user;
+    if(user){
+      return this.clienteService.obtenerClientePorIdUsuario(user.id).pipe(
+          map (cliente => cliente.idCliente),
+          catchError(error => {
+            console.error(error);
+            return of(undefined);
+          })
+        );
+    }
+    return of(undefined);
   }
   
   isAdmin(): boolean {

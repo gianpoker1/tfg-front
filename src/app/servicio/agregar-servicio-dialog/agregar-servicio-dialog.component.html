@@ -1,58 +1,65 @@
 <h2 mat-dialog-title>Agregar Servicio</h2>
 <mat-dialog-content>
-  <form #agregarServicioForm="ngForm" (ngSubmit)="agregarServicioForm.valid && agregarServicio()">
+  <form [formGroup]="nuevoServicioForm" (ngSubmit)="nuevoServicioForm.valid && agregarServicio()">
 
 
     <mat-form-field class="full-width">
       <mat-label>Cliente</mat-label>
-      <mat-select id="idCliente" name="idCliente" [(ngModel)]="nuevoServicio.idCliente" required>
-        <mat-option *ngFor="let cliente of usuarios" [value]="cliente.id">{{ cliente.nombre }}</mat-option>
+      <mat-select formControlName="idCliente" required>
+        <mat-option *ngFor="let userCliente of userClientes" [value]="userCliente.cliente.idCliente">{{ userCliente.usuario.nombre }}</mat-option>
       </mat-select>
+      <mat-error *ngIf="nuevoServicioForm.controls['idCliente'].invalid">El campo Cliente es requerido.</mat-error>
     </mat-form-field>
     <br>
     <br>
     <mat-form-field class="full-width">
       <label for="fechaInicio">Fecha de Inicio</label>
-      <input matInput [matDatepicker]="picker" id="fechaInicio" name="fechaInicio" [(ngModel)]="nuevoServicio.fechaInicio" required>
+      <input matInput [matDatepicker]="picker" formControlName="fechaInicio" required>
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="nuevoServicioForm.controls['fechaInicio'].invalid">El campo Fecha de Inicio es requerido.</mat-error>
     </mat-form-field>
     <br>
     <br>
     <mat-form-field class="full-width">
       <label for="fechaEntrega">Fecha de Entrega</label>
-      <input matInput [matDatepicker]="picker2" id="fechaEntrega" name="fechaEntrega" [(ngModel)]="nuevoServicio.fechaEntrega" required>
+      <input matInput [matDatepicker]="picker2" formControlName="fechaEntrega" required>
       <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
       <mat-datepicker #picker2></mat-datepicker>
+      <mat-error *ngIf="nuevoServicioForm.controls['fechaEntrega'].invalid">El campo Fecha de Entrega es requerido.</mat-error>
     </mat-form-field>
 
     <br>
     <br>
-    <mat-checkbox matCheckbox [(ngModel)]="nuevoServicio.entregado" name="entregado">Entregado</mat-checkbox>
+    <mat-checkbox matCheckbox formControlName="entregado">Entregado</mat-checkbox>
     <br>
     <br>
 
     <mat-form-field class="full-width">
       <label for="subtotal">Subtotal</label>
-      <input matInput type="number" id="subtotal" name="subtotal" [(ngModel)]="nuevoServicio.subtotal" required>
+      <input matInput type="number" formControlName="subtotal" required>
+      <mat-error *ngIf="nuevoServicioForm.controls['subtotal'].invalid">El campo Subtotal es requerido.</mat-error>
     </mat-form-field>
     <br>
     <br>
     <mat-form-field class="full-width">
       <label for="formaDePago">Forma de Pago</label>
-      <input matInput id="formaDePago" name="formaDePago" [(ngModel)]="nuevoServicio.formaDePago" required>
+      <input matInput formControlName="formaDePago" required>
+      <mat-error *ngIf="nuevoServicioForm.controls['formaDePago'].invalid">El campo Forma de Pago es requerido.</mat-error>
     </mat-form-field>
     <br>
     <br>
     <mat-form-field class="full-width">
       <label for="nombre">Nombre del Servicio</label>
-      <input matInput id="nombre" name="nombre" [(ngModel)]="nuevoServicio.nombre" required>
+      <input matInput formControlName="nombre" required>
+      <mat-error *ngIf="nuevoServicioForm.controls['nombre'].invalid">El campo Nombre del Servicio es requerido.</mat-error>
     </mat-form-field>
     <br>
     <br>
     <mat-form-field class="full-width">
       <label for="notas">Notas</label>
-      <textarea matInput id="notas" name="notas" [(ngModel)]="nuevoServicio.notas" required></textarea>
+      <textarea matInput formControlName="notas" required></textarea>
+      <mat-error *ngIf="nuevoServicioForm.controls['notas'].invalid">El campo Notas es requerido.</mat-error>
     </mat-form-field>
     <br>
     <br>
@@ -61,6 +68,6 @@
 <br>
     <br>
 <mat-dialog-actions class="full-width">
-  <button mat-raised-button color="primary" (click)="agregarServicio()" [disabled]="agregarServicioForm.invalid">Agregar</button>
+  <button mat-raised-button color="primary" (click)="agregarServicio()">Agregar</button>
   <button mat-button mat-dialog-close>Cancelar</button>
 </mat-dialog-actions>

@@ -26,13 +26,13 @@
 
   <ng-container matColumnDef="NombreServicio">
     <th mat-header-cell *matHeaderCellDef>Nombre</th>
-    <td mat-cell *matCellDef="let servicio">{{ servicio.fechaEntrega || 'Sin Nombre'  }}</td>
+    <td mat-cell *matCellDef="let servicio">{{ servicio.nombre || 'Sin Nombre'  }}</td>
   </ng-container>
 
 
   <ng-container matColumnDef="Trabajador">
     <th mat-header-cell *matHeaderCellDef>Trabajador</th>
-    <td mat-cell *matCellDef="let servicio">{{ nombresTrabajadores[servicio.idServicio] }}</td>
+    <td mat-cell *matCellDef="let servicio">{{ nombresTrabajadores[servicio.idTrabajador] }}</td>
   </ng-container>
 
   <ng-container matColumnDef="acciones">

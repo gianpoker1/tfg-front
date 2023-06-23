@@ -48,9 +48,6 @@ export class AgregarTrabajadorComponent {
         roles: this.nuevoTrajadorForm.get('roles')?.value
       };
 
-      console.log('NUEVO TARBAJADOR', JSON.stringify(nuevoTrabajador));
-
-
       this.trabajadorService.agregarTrabajador(nuevoTrabajador).subscribe(
         () => {
           console.log('Trabajador agregado con exito');
