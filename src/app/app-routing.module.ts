@@ -15,6 +15,7 @@ import { ServiciosUsuarioComponent } from './servicio/servicios-usuario/servicio
 import { ServiciosDisponiblesComponent } from './servicio/servicios-disponibles/servicios-disponibles.component';
 import { ServiciosDisponiblesAdminComponent } from './servicio/servicios-disponibles-admin/servicios-disponibles-admin.component';
 import { ListaProductosClientComponent } from './producto/lista-productos-client/lista-productos-client.component';
+import { ServiciosSolicitadosAdminComponent } from './servicio/servicios-solicitados-admin/servicios-solicitados-admin.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -31,7 +32,8 @@ const routes: Routes = [
   { path: 'usuarioServicio', component: ServiciosUsuarioComponent},
   { path: 'serviciosDisponibles', component: ServiciosDisponiblesComponent},
   { path: 'serviciosDisponiblesAdmin', component: ServiciosDisponiblesAdminComponent},
-  { path: 'productosClient', component: ListaProductosClientComponent}
+  { path: 'productosClient', component: ListaProductosClientComponent},
+  { path: 'serviciosSolicitadosAdmin', component: ServiciosSolicitadosAdminComponent}
 ];
 
 @NgModule({

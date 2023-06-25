@@ -8,7 +8,6 @@ export class JwtInterceptor implements HttpInterceptor {
         // Obtener el token del almacenamiento local
         let token = localStorage.getItem('token');
         //token
-        console.log('Token del almacenamiento local:', token);
 
         if (token) {
             // Clonar la solicitud y agregar el encabezado de autorización con el token
@@ -20,7 +19,6 @@ export class JwtInterceptor implements HttpInterceptor {
         const authHeader = request.headers.get('Authorization');
         const extractedToken = authHeader ? authHeader.replace('Bearer ', '') : null;
 
-        console.log('Token extraído de la solicitud:', extractedToken);
 
         
         // Pasar la solicitud modificada al siguiente controlador en la cadena

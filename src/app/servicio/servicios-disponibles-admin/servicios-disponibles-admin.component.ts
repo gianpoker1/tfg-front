@@ -5,6 +5,7 @@ import { ServicioDisponibleService } from 'src/app/services/servicio-disponible.
 import { AgregarServicioDisponibleDialogComponent } from '../agregar-servicio-disponible-dialog/agregar-servicio-disponible-dialog.component';
 import { EditarServicioDisponibleDialogComponent } from '../editar-servicio-disponible-dialog/editar-servicio-disponible-dialog.component';
 import { EliminarServicioDisponibleDialogComponent } from '../eliminar-servicio-disponible-dialog/eliminar-servicio-disponible-dialog.component';
+import { delay, filter } from 'rxjs';
 
 @Component({
   selector: 'app-servicios-disponibles-admin',
@@ -34,19 +35,17 @@ export class ServiciosDisponiblesAdminComponent {
     });
   }
 
-  solicitarServicio(idServicioDisponible: number): void{
-    console.log("Solicitar servicio");
-  }
 
   agregarServicioDiponibleDialog() : void{
     const dialogRef = this.dialog.open(AgregarServicioDisponibleDialogComponent, {
       width: '1000px',
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if(result){
-        this.getServiciosDisponibles();
-      }
+    dialogRef.afterClosed().pipe(
+      filter(result => !!result),
+      delay(500)
+    ).subscribe(result => {
+      this.getServiciosDisponibles();
     });
   }
 
@@ -56,10 +55,11 @@ export class ServiciosDisponiblesAdminComponent {
       data: idServicioDisponible
       });
 
-      dialogRef.afterClosed().subscribe(result => {
-        if(result){
-          this.getServiciosDisponibles();
-        }
+      dialogRef.afterClosed().pipe(
+        filter(result => !!result),
+        delay(500)
+      ).subscribe(result => {
+        this.getServiciosDisponibles();
       });
   }
 
@@ -69,10 +69,11 @@ export class ServiciosDisponiblesAdminComponent {
       data: idServicioDisponible
       });
 
-      dialogRef.afterClosed().subscribe(result => {
-        if(result){
-          this.getServiciosDisponibles();
-        }
+      dialogRef.afterClosed().pipe(
+        filter(result => !!result),
+        delay(500)
+      ).subscribe(result => {
+        this.getServiciosDisponibles();
       });
   }
 

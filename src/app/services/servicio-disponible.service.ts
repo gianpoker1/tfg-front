@@ -2,14 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ServicioDisponible } from '../models/ServicioDisponible';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServicioDisponibleService {
 
-  private baseUrl = 'http://localhost:8080/api/serviciosDisponibles';
-
+  private baseUrl = environment.servicioDisponibleUrl;
   constructor(private http: HttpClient) { }
 
   obtenerServiciosDisponibles(): Observable<ServicioDisponible[]> {

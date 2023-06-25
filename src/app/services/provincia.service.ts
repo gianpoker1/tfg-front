@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Provincia } from '../models/provincia.model';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProvinciaService {
 
-  private baseUrl = 'http://localhost:8080/api/provincias';
+  private baseUrl = environment.provinciaUrl;
 
   constructor(private http: HttpClient) { }
 

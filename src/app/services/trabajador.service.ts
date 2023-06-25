@@ -4,13 +4,14 @@ import { Observable } from 'rxjs';
 import { Trabajador } from '../models/trabajador.model';
 import { UserTrabajador } from '../models/user-trabajador';
 import { TrabajadorRol } from '../models/trabajador-rol';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TrabajadorService {
 
-  private baseUrl = 'http://localhost:8080/api/trabajadores';
+  private baseUrl = environment.trabajadorUrl;
 
   constructor(private http: HttpClient) { }
 

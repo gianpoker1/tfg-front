@@ -7,6 +7,7 @@ import { ClienteService } from 'src/app/services/cliente.service';
 import { ServicioDisponibleService } from 'src/app/services/servicio-disponible.service';
 import { ServicioSolicitadoService } from 'src/app/services/servicio-solicitado.service';
 import { SolicitarServicioDisponibleDialogComponent } from '../solicitar-servicio-disponible-dialog/solicitar-servicio-disponible-dialog.component';
+import { delay, filter } from 'rxjs';
 
 @Component({
   selector: 'app-servicios-disponibles',
@@ -46,10 +47,11 @@ export class ServiciosDisponiblesComponent implements OnInit {
       data: idServicioDisponible
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if(result){
-        this.getServiciosDisponibles();
-      }
+    dialogRef.afterClosed().pipe(
+      filter(result => !!result),
+      delay(500),
+    ).subscribe(result => {
+      this.getServiciosDisponibles();
     });
   }
 

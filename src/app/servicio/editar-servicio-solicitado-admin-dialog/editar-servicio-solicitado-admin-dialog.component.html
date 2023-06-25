@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>Editar Servicio Solicitado</h2>
+<mat-dialog-content>
+    <form [formGroup]="servicioSolicitadoForm">
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Estado</mat-label>
+            <input matInput formControlName="estado" placeholder="Estado" required>
+        </mat-form-field>
+        <br>
+        <br>
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Duracion</mat-label>
+            <input matInput formControlName="duracion" placeholder="Duracion" required>
+        </mat-form-field>
+        <br>
+        <br>
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Notas</mat-label>
+            <textarea matInput formControlName="notasAdicionales" placeholder="Notas" required></textarea>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-button (click)="cancelar()">Cancelar</button>
+    <button mat-button (click)="guardarCambios()">Editar</button>
+</mat-dialog-actions>

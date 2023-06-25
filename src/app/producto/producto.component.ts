@@ -6,7 +6,7 @@ import { EditarProductoDialogComponent } from './editar-producto-dialog/editar-p
 import { EliminarProductoDialogComponent } from './eliminar-producto-dialog/eliminar-producto-dialog.component';
 import { AgregarProductoDialogComponent } from './agregar-producto-dialog/agregar-producto-dialog.component';
 import { Categoria } from '../models/categoria.model';
-import { forkJoin } from 'rxjs';
+import { delay, filter, forkJoin } from 'rxjs';
 import { CategoriaService } from '../services/categoria.service';
 
 @Component({
@@ -35,13 +35,11 @@ export class ProductoComponent implements OnInit {
       width: '1000px'
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.productoService.agregarProducto(result)
-          .subscribe(() => {
-            this.getProductos();
-          });
-      }
+    dialogRef.afterClosed().pipe(
+      filter(result => !!result),
+      delay(500)
+    ).subscribe(result => {
+      this.getProductos();
     });
   }
 
@@ -61,10 +59,11 @@ export class ProductoComponent implements OnInit {
       data: idProducto
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.getProductos();
-      }
+    dialogRef.afterClosed().pipe(
+      filter(result => !!result),
+      delay(500)
+    ).subscribe(result => {
+      this.getProductos();
     });
   }
 
@@ -74,10 +73,11 @@ export class ProductoComponent implements OnInit {
       data: idProducto
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.getProductos();
-      }
+    dialogRef.afterClosed().pipe(
+      filter(result => !!result),
+      delay(500)
+    ).subscribe(result => {
+      this.getProductos();
     });
   }
 

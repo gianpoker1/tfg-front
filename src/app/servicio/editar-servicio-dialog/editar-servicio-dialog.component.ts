@@ -24,6 +24,7 @@ export class EditarServicioDialogComponent implements OnInit {
   clientes: Cliente[] = [];
   trabajadores: Trabajador[] = [];
   usuarios: Usuario[] = [];
+  usuarioCliente: Usuario[] = [];
   usuarioTrabajador: Usuario[] = [];
   servicio!: Servicio;
   userCliente!: UserCliente;
@@ -55,16 +56,23 @@ export class EditarServicioDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.getClients();
+    
     this.servicioService.obtenerServicioPorId(this.data).subscribe(servicio => {
       this.servicio = servicio;
 
-      this.clienteService.obtenerClientePorId(servicio.idCliente).subscribe(userCliente => {
+      this.clienteService.obtenerClientePorId(servicio.idCliente)
+      //.pipe(delay(3000))
+      .subscribe(userCliente => {
         this.userCliente = userCliente;
         this.servicioForm.get('idCliente')?.setValue(userCliente.usuario.nombre);
         
       });
 
-      this.trabajadorService.obtenerTrabajadorPorId(servicio.idTrabajador).subscribe(userTrabajador => {
+      this.trabajadorService.obtenerTrabajadorPorId(servicio.idTrabajador)
+      //.pipe(delay(3000))
+      .subscribe(userTrabajador => {
         this.userTrabajador = userTrabajador;
         this.servicioForm.get('idTrabajador')?.setValue(userTrabajador.usuario.nombre);
       });
@@ -85,19 +93,15 @@ export class EditarServicioDialogComponent implements OnInit {
 
     });
 
-    this.getClients();
-    this.getTrabajadores();
     
+    this.getTrabajadores();
     //filtrar clientes y trabajadores
     this.usuarioService.findAll().subscribe(usuarios => {
-      
-      this.usuarios = usuarios.filter(usuario => this.esCliente(usuario));
+      this.usuarios = usuarios;
+      this.usuarioCliente = usuarios.filter(usuario => this.esCliente(usuario));
       this.usuarioTrabajador = usuarios.filter(usuario => this.esTrabajador(usuario));
-      console.log('USUARIOS CLIENTES: ', this.usuarios);
     });
 
-    //filtrar trabajadores
-  
     
   }
 
@@ -151,7 +155,7 @@ export class EditarServicioDialogComponent implements OnInit {
 
   buscarNombreTrabajador(nombre: string): number{
     const usuarioEncontrado = this.usuarios.find(usuario => usuario.nombre === nombre);
-    
+
     const trabajadorAsociado = this.trabajadores.find(trabajador => trabajador.idUsuario === usuarioEncontrado?.id);
     return trabajadorAsociado ? trabajadorAsociado.idTrabajador : 0;
   }

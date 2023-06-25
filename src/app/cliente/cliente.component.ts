@@ -7,7 +7,7 @@ import { EliminarClienteDialogComponent } from './eliminar-cliente-dialog/elimin
 import { UsuarioService } from '../services/usuario.service';
 import { Usuario } from '../models/usuario.model';
 import { forkJoin } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { delay, filter, map, switchMap } from 'rxjs/operators';
 import { AgregarClienteDialogComponent } from './agregar-cliente-dialog/agregar-cliente-dialog.component';
 import { Provincia } from '../models/provincia.model';
 import { Ciudad } from '../models/ciudad.model';
@@ -87,10 +87,12 @@ export class ClienteComponent implements OnInit {
       width: '1000px',
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.getClientes();
-      }
+    dialogRef.afterClosed().pipe(
+      filter(result => !!result),
+      delay(1000)
+    ).subscribe(result => {
+      // Actualizar la lista de clientes si se agregó uno
+      this.getClientes(); 
     });
   }
 
@@ -100,11 +102,11 @@ export class ClienteComponent implements OnInit {
       data: idCliente
     });
   
-    dialogRef.afterClosed().subscribe(result => {
-      // Actualizar la lista de clientes si se modificó alguno
-      if (result) {
-        this.getClientes();
-      }
+    dialogRef.afterClosed().pipe(
+      filter(result => !!result),
+      delay(500)
+    ).subscribe(result => {
+      this.getClientes();
     });
   }
 
@@ -114,11 +116,11 @@ export class ClienteComponent implements OnInit {
       data: idCliente
     });
   
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        // Actualizar la lista de clientes después de eliminar uno
-        this.getClientes();
-      }
+    dialogRef.afterClosed().pipe(
+      filter(result => !!result),
+      delay(500)
+    ).subscribe(result => {
+      this.getClientes();
     });
   }
 

@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Pais } from '../models/pais.model';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PaisService {
 
-  private baseUrl = 'http://localhost:8080/api/paises';
+  private baseUrl = environment.paisUrl;
 
   constructor(private http: HttpClient) { }
 

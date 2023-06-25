@@ -3,7 +3,7 @@ import { Compra } from '../models/compra.model';
 import { CompraService } from '../services/compra.service';
 import { MatDialog } from '@angular/material/dialog';
 import { forkJoin } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { delay, filter, map } from 'rxjs/operators';
 import { AgregarCompraDialogComponent } from './agregar-compra-dialog/agregar-compra-dialog.component';
 import { EditarCompraDialogComponent } from './editar-compra-dialog/editar-compra-dialog.component';
 import { EliminarCompraDialogComponent } from './eliminar-compra-dialog/eliminar-compra-dialog.component';
@@ -73,10 +73,11 @@ export class CompraComponent implements OnInit {
       width: '1000px',
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if(result){
-        this.getCompras();
-      }
+    dialogRef.afterClosed().pipe(
+      filter(result => !!result),
+      delay(500)
+    ).subscribe(result => {
+      this.getCompras();
     });
   }
 
@@ -86,10 +87,11 @@ export class CompraComponent implements OnInit {
       data: detalleCompra
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if(result){
-        this.getCompras();
-      }
+    dialogRef.afterClosed().pipe(
+      filter(result => !!result),
+      delay(500)
+    ).subscribe(result => {
+      this.getCompras();
     });
   }
 
@@ -99,10 +101,11 @@ export class CompraComponent implements OnInit {
       data: idCompra
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if(result){
-        this.getCompras();
-      }
+    dialogRef.afterClosed().pipe(
+      filter(result => !!result),
+      delay(500)
+    ).subscribe(result => {
+      this.getCompras();
     });
   }
 

@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Ciudad } from '../models/ciudad.model';
 import { CiudadConProvinciaYPais } from '../models/ciudad-con-provincia-ypais';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CiudadService {
 
-  private baseUrl = 'http://localhost:8080/api/ciudades';
+  private baseUrl = environment.ciudadUrl;
 
   constructor(private http: HttpClient) { }
 

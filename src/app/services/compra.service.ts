@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Compra } from '../models/compra.model';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CompraService {
 
-  private baseUrl = 'http://localhost:8080/api/compras';
+  private baseUrl = environment.compraUrl;
 
   constructor(private http: HttpClient) { }
 

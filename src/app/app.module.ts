@@ -78,6 +78,9 @@ import { EliminarServicioDisponibleDialogComponent } from './servicio/eliminar-s
 import { SolicitarServicioDisponibleDialogComponent } from './servicio/solicitar-servicio-disponible-dialog/solicitar-servicio-disponible-dialog.component';
 import { NotaAdicionalModalComponent } from './servicio/nota-adicional-modal/nota-adicional-modal.component';
 import { ListaProductosClientComponent } from './producto/lista-productos-client/lista-productos-client.component';
+import { ServiciosSolicitadosAdminComponent } from './servicio/servicios-solicitados-admin/servicios-solicitados-admin.component';
+import { EditarServicioSolicitadoAdminDialogComponent } from './servicio/editar-servicio-solicitado-admin-dialog/editar-servicio-solicitado-admin-dialog.component';
+import { EliminarServicioSolicitadoAdminDialogComponent } from './servicio/eliminar-servicio-solicitado-admin-dialog/eliminar-servicio-solicitado-admin-dialog.component';
 
 @NgModule({
   declarations: [
@@ -133,7 +136,10 @@ import { ListaProductosClientComponent } from './producto/lista-productos-client
     EliminarServicioDisponibleDialogComponent,
     SolicitarServicioDisponibleDialogComponent,
     NotaAdicionalModalComponent,
-    ListaProductosClientComponent
+    ListaProductosClientComponent,
+    ServiciosSolicitadosAdminComponent,
+    EditarServicioSolicitadoAdminDialogComponent,
+    EliminarServicioSolicitadoAdminDialogComponent
   ],
   imports: [
     BrowserModule,

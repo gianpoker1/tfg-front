@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ServicioSolicitado } from '../models/ServicioSolicitado';
 import { ServicioSolicitadoConDisponible } from '../models/servicio-solicitado-con-disponible';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServicioSolicitadoService {
 
-  private baseUrl = 'http://localhost:8080/api/serviciosSolicitados';
+  private baseUrl = environment.servicioSolicitadoUrl;
 
   constructor(private http: HttpClient) { }
 

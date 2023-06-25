@@ -1,0 +1,21 @@
+export const environment = {
+    production: true,
+    authUrl : 'http://proyectoback-env.eba-fmd2yrvu.us-east-1.elasticbeanstalk.com',
+    categoriaUrl: 'http://proyectoback-env.eba-fmd2yrvu.us-east-1.elasticbeanstalk.com/api/categorias',
+    ciudadUrl: 'http://proyectoback-env.eba-fmd2yrvu.us-east-1.elasticbeanstalk.com/api/ciudades',
+    clienteUrl: 'http://proyectoback-env.eba-fmd2yrvu.us-east-1.elasticbeanstalk.com/api/clientes',
+    compraUrl: 'http://proyectoback-env.eba-fmd2yrvu.us-east-1.elasticbeanstalk.com/api/compras',
+    detalleServicioUrl: 'http://proyectoback-env.eba-fmd2yrvu.us-east-1.elasticbeanstalk.com/api/detalleServicios',
+    paisUrl: 'http://proyectoback-env.eba-fmd2yrvu.us-east-1.elasticbeanstalk.com/api/paises',
+    productoUrl: 'http://proyectoback-env.eba-fmd2yrvu.us-east-1.elasticbeanstalk.com/api/productos',
+    proveedorUrl: 'http://proyectoback-env.eba-fmd2yrvu.us-east-1.elasticbeanstalk.com/api/proovedores',
+    provinciaUrl: 'http://proyectoback-env.eba-fmd2yrvu.us-east-1.elasticbeanstalk.com/api/provincias',
+    registroUrl: 'http://proyectoback-env.eba-fmd2yrvu.us-east-1.elasticbeanstalk.com/auth/registro',
+    rolUrl: 'http://proyectoback-env.eba-fmd2yrvu.us-east-1.elasticbeanstalk.com/api/roles',
+    servicioDisponibleUrl: 'http://proyectoback-env.eba-fmd2yrvu.us-east-1.elasticbeanstalk.com/api/serviciosDisponibles',
+    servicioSolicitadoUrl: 'http://proyectoback-env.eba-fmd2yrvu.us-east-1.elasticbeanstalk.com/api/serviciosSolicitados',
+    servicioUrl: 'http://proyectoback-env.eba-fmd2yrvu.us-east-1.elasticbeanstalk.com/api/servicios',
+    trabajadorUrl: 'http://proyectoback-env.eba-fmd2yrvu.us-east-1.elasticbeanstalk.com/api/trabajadores',
+    usuarioRolUrl: 'http://proyectoback-env.eba-fmd2yrvu.us-east-1.elasticbeanstalk.com/api/usuarioRoles',
+    usuarioUrl: 'http://proyectoback-env.eba-fmd2yrvu.us-east-1.elasticbeanstalk.com/api/usuarios'
+};

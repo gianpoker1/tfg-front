@@ -76,6 +76,7 @@ export class AgregarClienteDialogComponent {
         roles: []
       };
 
+      console.log('USUARIO NUEVO JSON: ', JSON.stringify(nuevoUsuario));
       this.registroervice.save(nuevoUsuario, '').subscribe(usuario => {
         console.log('Usuario agregado');
       }, error  => {

@@ -2,14 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UsuarioRol } from '../models/usuarioRol.model';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioRolService {
 
-  private baseUrl = 'http://localhost:8080/api/usuarioRol';
-
+  private baseUrl = environment.usuarioRolUrl;
   constructor(private http: HttpClient) { }
 
   findAll(): Observable<UsuarioRol[]> {

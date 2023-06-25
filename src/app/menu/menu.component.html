@@ -11,13 +11,13 @@
     <button mat-button (click)="authService.logout()">Cerrar sesión</button>
     <!-- trabajador -->
     <ng-container *ngIf="isTrabajador()">
-      <button mat-button routerLink="/trabajadores">Trabajadores</button>
       <button mat-button routerLink="/cliente">Clientes</button>
       <button mat-button routerLink="/servicios">Servicios en curso</button>
       <button mat-button routerLink="/compras">Compras</button>
       <button mat-button routerLink="/producto">Productos</button>
       <button mat-button routerLink="/proovedores">Proovedores</button>
-      <button mat-button routerLink="/serviciosDisponiblesAdmin">Lista de Servicios</button>
+      <button mat-button routerLink="/serviciosDisponiblesAdmin">Disponibles</button>
+      <button mat-button routerLink="/serviciosSolicitadosAdmin">Solicitados</button>
     </ng-container>
     <!-- Admin -->
     <ng-container *ngIf="isAdmin()">
@@ -28,7 +28,8 @@
       <button mat-button routerLink="/producto">Productos</button>
       <button mat-button routerLink="/proovedores">Proovedores</button>
       <button mat-button routerLink="/pais">Paises</button>
-      <button mat-button routerLink="/serviciosDisponiblesAdmin">Lista de Servicios</button>
+      <button mat-button routerLink="/serviciosDisponiblesAdmin">Disponibles</button>
+      <button mat-button routerLink="/serviciosSolicitadosAdmin">Solicitados</button>
     </ng-container>
     <!-- Cliente -->
     <ng-container *ngIf="isCliente()">

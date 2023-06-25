@@ -7,7 +7,7 @@ import { EliminarTrabajadorDialogComponent } from './eliminar-trabajador-dialog/
 import { Usuario } from '../models/usuario.model';
 import { UsuarioService } from '../services/usuario.service';
 import { forkJoin } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { delay, filter, map, switchMap } from 'rxjs/operators';
 import { UserTrabajador } from '../models/user-trabajador';
 import { Pais } from '../models/pais.model';
 import { Provincia } from '../models/provincia.model';
@@ -91,10 +91,11 @@ export class TrabajadorComponent implements OnInit {
       width: '1000px',
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.getTrabajadores();
-      }
+    dialogRef.afterClosed().pipe(
+      filter(result => !!result),
+      delay(1000)
+    ).subscribe(result => {
+      this.getTrabajadores();
     });
   }
 
@@ -105,10 +106,11 @@ export class TrabajadorComponent implements OnInit {
     });
 
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.getTrabajadores();
-      }
+    dialogRef.afterClosed().pipe(
+      filter(result => !!result),
+      delay(500)
+    ).subscribe(result => {
+      this.getTrabajadores();
     });
 
   }
@@ -120,10 +122,11 @@ export class TrabajadorComponent implements OnInit {
       data: idTrabajador
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.getTrabajadores();
-      }
+    dialogRef.afterClosed().pipe(
+      filter(result => !!result),
+      delay(500)
+    ).subscribe(result => {
+      this.getTrabajadores();
     });
   }
 

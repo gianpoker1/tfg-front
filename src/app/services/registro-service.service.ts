@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Usuario } from '../models/usuario.model';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegistroServiceService {
 
-  private baseUrl = 'http://localhost:8080/auth/registro';
+  private baseUrl = environment.registroUrl;
 
   constructor(private http: HttpClient) { }
 

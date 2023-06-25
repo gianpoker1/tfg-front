@@ -31,6 +31,6 @@
   </form>
 </mat-dialog-content>
 <mat-dialog-actions class="dialog-actions">
-  <button mat-raised-button color="primary" [mat-dialog-close]="nuevoProducto" [disabled]="agregarProductoForm.invalid">Agregar</button>
+  <button mat-raised-button color="primary" [disabled]="agregarProductoForm.invalid" (click)="agregarProducto()">Agregar</button>
   <button mat-button [mat-dialog-close]="null">Cancelar</button>
 </mat-dialog-actions>

@@ -9,6 +9,7 @@ import { ClienteService } from '../services/cliente.service';
 import { TrabajadorService } from '../services/trabajador.service';
 import { Cliente } from '../models/cliente.model';
 import { Trabajador } from '../models/trabajador.model';
+import { delay, filter } from 'rxjs';
 
 
 @Component({
@@ -70,10 +71,11 @@ export class ServicioComponent implements OnInit {
       width: '1000px'
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.getServicios();
-      }
+    dialogRef.afterClosed().pipe(
+      filter(result => !!result),
+      delay(500)
+    ).subscribe(result => {
+      this.getServicios();
     });
   }
 
@@ -83,10 +85,11 @@ export class ServicioComponent implements OnInit {
       data: idServicio
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.getServicios();
-      }
+    dialogRef.afterClosed().pipe(
+      filter(result => !!result),
+      delay(500)
+    ).subscribe(result => {
+      this.getServicios();
     });
   }
 
@@ -96,12 +99,11 @@ export class ServicioComponent implements OnInit {
       data: idServicio
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.servicioService.obtenerServicios().subscribe(servicios => {
-          this.servicios = servicios;
-        });
-      }
+    dialogRef.afterClosed().pipe(
+      filter(result => !!result),
+      delay(500)
+    ).subscribe(result => {
+      this.getServicios();
     });
   }
 

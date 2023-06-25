@@ -3,14 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Cliente } from '../models/cliente.model';
 import { UserCliente } from '../models/user-cliente';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClienteService {
 
-  private baseUrl = 'http://localhost:8080/api/clientes';
-
+  private baseUrl = environment.clienteUrl;
   constructor(private http: HttpClient) { }
 
   obtenerClientes(): Observable<Cliente[]> {

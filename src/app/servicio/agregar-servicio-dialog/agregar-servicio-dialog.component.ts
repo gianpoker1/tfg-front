@@ -47,7 +47,7 @@ export class AgregarServicioDialogComponent {
       formaDePago: ['',Validators.required],
       notas: ['',Validators.required],
       nombre: ['',Validators.required],
-      entregado: [''],
+      entregado: [false],
       idTrabajador: [this.idTrabajador]
     });
     this.obtenerClientes();
@@ -65,13 +65,14 @@ export class AgregarServicioDialogComponent {
   }
 
   agregarServicio(): void {
+    console.log(this.nuevoServicioForm.value);
    if(this.nuevoServicioForm.valid){
     const nuevoServicio: Servicio = {
       idServicio: 0,
       idCliente: this.nuevoServicioForm.get('idCliente')?.value,
       fechaInicio: this.nuevoServicioForm.get('fechaInicio')?.value,
       fechaEntrega: this.nuevoServicioForm.get('fechaEntrega')?.value,
-      entregado: this.nuevoServicioForm.get('entregado')?.value,
+      entregado: this.getEntregadoValue(),
       subtotal: this.nuevoServicioForm.get('subtotal')?.value,
       formaDePago: this.nuevoServicioForm.get('formaDePago')?.value,
       nombre: this.nuevoServicioForm.get('nombre')?.value,
@@ -87,6 +88,10 @@ export class AgregarServicioDialogComponent {
       this.dialogRef.close(true);
     }
     
+  }
+
+  getEntregadoValue(): boolean {
+    return this.nuevoServicioForm.get('entregado')?.value || false;
   }
 
   cerrarDialog(): void {

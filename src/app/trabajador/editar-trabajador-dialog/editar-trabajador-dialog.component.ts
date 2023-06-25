@@ -118,8 +118,9 @@ export class EditarTrabajadorDialogComponent{
     const userTrabajador : UserTrabajador={
       usuario: this.usuario,
       trabajador: this.trabajador,
-      roles: this.rolesDeTrabajador
+      roles: formValue.roles
     };
+    console.log('TRABAJADOR JSON: ', userTrabajador);
     this.trabajadorService.actualizarTrabajador(this.trabajador.idTrabajador, this.usuario.id, userTrabajador)
     .subscribe(() => {
       console.log("Trabajador actualizado");

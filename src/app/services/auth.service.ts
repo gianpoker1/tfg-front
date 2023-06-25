@@ -9,12 +9,13 @@ import { UsuarioRolService } from './usuario-rol.service';
 import { RolService } from './rol.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ClienteService } from './cliente.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private baseUrl = 'http://localhost:8080';
+  private baseUrl = environment.authUrl;
 
   private hasManagerRoleSubject = new BehaviorSubject<boolean>(false);
   public hasManagerRole$ = this.hasManagerRoleSubject.asObservable();
