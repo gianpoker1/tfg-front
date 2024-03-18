@@ -2,7 +2,7 @@
   "name": "tienda-electronica",
   "version": "0.0.0",
   "engines": {
-    "node": ">=14.20 <21"
+    "node": ">=14.20.x <21"
   },
   "scripts": {
     "ng": "ng",
