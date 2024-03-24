@@ -1,9 +1,12 @@
-FROM node:14 as build
+FROM node:latest as build
 WORKDIR /app
-COPY package.json package-lock.json ./
-RUN npm install
+COPY package*.json ./
+RUN npm ci
+RUNnpm install -g @angular/cli
 COPY . .
-RUN npm run build
+RUN npm run build --configuration=production
 
-FROM nginx:1.17-alpine
+FROM nginx:latest
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /app/dist/tienda-electronica usr/share/nginx/html
+EXPOSE 80
