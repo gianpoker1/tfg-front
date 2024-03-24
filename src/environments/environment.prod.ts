@@ -1,6 +1,6 @@
 export const environment = {
     production: true,
-    authUrl : 'http://104.248.32.80:8080/auth',
+    authUrl : 'http://104.248.32.80:8080',
     categoriaUrl: 'http://104.248.32.80:8080/api/categorias',
     ciudadUrl: 'http://104.248.32.80:8080/api/ciudades',
     clienteUrl: 'http://104.248.32.80:8080/api/clientes',
