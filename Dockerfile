@@ -5,5 +5,5 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-FROM nginx:1.17-1-alpine
+FROM nginx:1.17-alpine
 COPY --from=build /app/dist/tienda-electronica usr/share/nginx/html
