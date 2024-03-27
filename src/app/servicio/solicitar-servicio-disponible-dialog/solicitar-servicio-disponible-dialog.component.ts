@@ -19,7 +19,7 @@ export class SolicitarServicioDisponibleDialogComponent implements OnInit{
   servicioDisponible!: ServicioDisponible;
   servicioSolicitado: ServicioSolicitado = new ServicioSolicitado();
   idCliente!: number;
-  
+
 
   constructor(
     public dialogRef: MatDialogRef<SolicitarServicioDisponibleDialogComponent>,
@@ -29,7 +29,7 @@ export class SolicitarServicioDisponibleDialogComponent implements OnInit{
     private servicioDisponibleService: ServicioDisponibleService,
     private servicioSoliciadoService: ServicioSolicitadoService,
     private clienteService: ClienteService
-  ) { 
+  ) {
     this.nuevoServicioSolicitadoForm = this.formBuilder.group({
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required],
@@ -43,7 +43,7 @@ export class SolicitarServicioDisponibleDialogComponent implements OnInit{
   ngOnInit(): void {
     this.servicioDisponibleService.obtenerServicioDisponiblePorId(this.data).subscribe(servicioDisponible =>{
       this.servicioDisponible = servicioDisponible;
-        
+
         this.nuevoServicioSolicitadoForm.patchValue({
           nombre: this.servicioDisponible.nombre,
           descripcion: this.servicioDisponible.descripcion,
@@ -70,6 +70,7 @@ export class SolicitarServicioDisponibleDialogComponent implements OnInit{
         this.servicioSolicitado.precio = formValue.precio;
         this.servicioSolicitado.duracion = formValue.duracion;
 
+
         this.servicioSoliciadoService.agregarServicioSolicitado(this.servicioSolicitado)
           .subscribe(
           () => {
@@ -78,7 +79,7 @@ export class SolicitarServicioDisponibleDialogComponent implements OnInit{
           this.dialogRef.close(true);
       });
     }
-      
+
   }
 
   cancelar(): void{

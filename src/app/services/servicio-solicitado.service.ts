@@ -27,6 +27,8 @@ export class ServicioSolicitadoService {
   }
 
   agregarServicioSolicitado(servicioSolicitado: ServicioSolicitado): Observable<ServicioSolicitado> {
+    console.log('URL: ', this.baseUrl);
+    console.log('Datos enviados: ', servicioSolicitado);
     return this.http.post<ServicioSolicitado>(this.baseUrl, servicioSolicitado);
   }
 
